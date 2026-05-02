@@ -1,0 +1,172 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Brand HSL tokens — derived from the design tokens shared by the team:
+       cobalt #155eef, navy #1e3a8a, orange #f97316, green #37ca37, smoke #f5f5f5 */
+    --background: 0 0% 100%;
+    --foreground: 222 47% 11%;
+
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 42%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+
+    --border: 215 20% 90%;
+    --input: 215 20% 90%;
+
+    /* Primary = cobalt */
+    --primary: 222 86% 51%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Secondary = brand blue */
+    --secondary: 213 92% 53%;
+    --secondary-foreground: 0 0% 100%;
+
+    --accent: 213 92% 96%;
+    --accent-foreground: 222 86% 31%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --ring: 222 86% 51%;
+    --radius: 0.625rem;
+  }
+
+  .dark {
+    --background: 222 47% 6%;
+    --foreground: 210 40% 98%;
+    --muted: 217 33% 14%;
+    --muted-foreground: 215 16% 64%;
+    --popover: 222 47% 6%;
+    --popover-foreground: 210 40% 98%;
+    --card: 222 47% 8%;
+    --card-foreground: 210 40% 98%;
+    --border: 217 33% 18%;
+    --input: 217 33% 18%;
+    --primary: 213 92% 60%;
+    --primary-foreground: 222 47% 6%;
+    --secondary: 213 92% 53%;
+    --secondary-foreground: 0 0% 100%;
+    --accent: 217 33% 18%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --ring: 213 92% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-feature-settings: 'rlig' 1, 'calt' 1;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading tracking-tight;
+  }
+  ::selection {
+    background: hsl(213 92% 53% / 0.20);
+    color: inherit;
+  }
+}
+
+@layer utilities {
+  /* Animated gradient text */
+  .text-gradient-brand {
+    @apply bg-gradient-to-r from-brand-cobalt via-brand-blue to-brand-orange bg-clip-text text-transparent;
+    background-size: 200% 200%;
+    animation: gradient-shift 8s ease-in-out infinite;
+  }
+
+  /* Decorative button shimmer overlay (use with `.btn-shimmer`) */
+  .btn-shimmer {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+  }
+  .btn-shimmer::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      120deg,
+      transparent 0%,
+      transparent 35%,
+      rgba(255, 255, 255, 0.25) 50%,
+      transparent 65%,
+      transparent 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 2.4s linear infinite;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Card lift hover */
+  .card-lift {
+    @apply transition-all duration-300 ease-out;
+  }
+  .card-lift:hover {
+    @apply -translate-y-1 shadow-glow;
+  }
+
+  /* Subtle border-glow on hover */
+  .ring-glow {
+    @apply transition-shadow duration-300;
+  }
+  .ring-glow:hover {
+    box-shadow:
+      0 0 0 1px hsl(var(--primary) / 0.4),
+      0 8px 24px -8px hsl(var(--primary) / 0.45);
+  }
+
+  /* Pulse ring for play buttons / active dots */
+  .pulse-ring::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 9999px;
+    background: currentColor;
+    opacity: 0.5;
+    animation: pulse-ring 1.6s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+    z-index: -1;
+  }
+
+  /* Reveal-on-scroll: ScrollReveal component flips data-revealed=true */
+  [data-reveal] {
+    opacity: 0;
+    transform: translateY(24px);
+    transition:
+      opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+  }
+  [data-reveal][data-revealed='true'] {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Reduced motion: respect user preference */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+    [data-reveal] {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
