@@ -12,9 +12,10 @@ import type { ContractMetadata } from '@/types/supabase'
 export default async function EditContractPage({
   params,
 }: {
-  params: Promise<{ locale: Locale; id: string }>
+  params: Promise<{ locale: string; id: string }>
 }) {
-  const { locale, id } = await params
+  const { locale: localeParam, id } = await params
+  const locale = localeParam as Locale
   setRequestLocale(locale)
 
   const supabase = await createClient()

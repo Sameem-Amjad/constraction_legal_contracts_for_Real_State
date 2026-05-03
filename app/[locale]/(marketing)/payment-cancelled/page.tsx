@@ -9,10 +9,11 @@ export default async function PaymentCancelledPage({
   params,
   searchParams,
 }: {
-  params: Promise<{ locale: Locale }>
+  params: Promise<{ locale: string }>
   searchParams: Promise<{ contract_id?: string }>
 }) {
-  const { locale } = await params
+  const { locale: localeParam } = await params
+  const locale = localeParam as Locale
   const { contract_id } = await searchParams
   setRequestLocale(locale)
   const t = await getTranslations('payment')

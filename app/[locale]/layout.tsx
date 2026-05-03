@@ -17,7 +17,8 @@ export default async function LocaleLayout({
   children,
   params,
 }: LocaleLayoutProps) {
-  const { locale } = await params
+  const { locale: localeParam } = await params
+  const locale = localeParam as Locale
 
   if (!locales.includes(locale as Locale)) {
     notFound()

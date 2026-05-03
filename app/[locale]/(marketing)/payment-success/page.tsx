@@ -11,7 +11,7 @@ import { reconcilePaymentSession } from '@/lib/stripe/webhooks'
 import type { Locale } from '@/i18n'
 
 interface PageProps {
-  params: Promise<{ locale: Locale }>
+  params: Promise<{ locale: string }>
   searchParams: Promise<{ session_id?: string; contract_id?: string }>
 }
 
@@ -19,7 +19,8 @@ export default async function PaymentSuccessPage({
   params,
   searchParams,
 }: PageProps) {
-  const { locale } = await params
+  const { locale: localeParam } = await params
+  const locale = localeParam as Locale
   const { session_id, contract_id } = await searchParams
   setRequestLocale(locale)
   const t = await getTranslations('payment')

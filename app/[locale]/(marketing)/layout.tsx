@@ -7,9 +7,10 @@ export default async function MarketingLayout({
   params,
 }: {
   children: React.ReactNode
-  params: Promise<{ locale: Locale }>
+  params: Promise<{ locale: string }>
 }) {
-  const { locale } = await params
+  const { locale: localeParam } = await params
+  const locale = localeParam as Locale
   return (
     <div className="flex min-h-screen flex-col">
       <Navbar locale={locale} />

@@ -9,9 +9,10 @@ import type { Locale } from '@/i18n'
 export default async function NewGCContractPage({
   params,
 }: {
-  params: Promise<{ locale: Locale }>
+  params: Promise<{ locale: string }>
 }) {
-  const { locale } = await params
+  const { locale: localeParam } = await params
+  const locale = localeParam as Locale
   setRequestLocale(locale)
 
   const supabase = await createClient()

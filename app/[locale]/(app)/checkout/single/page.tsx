@@ -5,10 +5,11 @@ export default async function SingleCheckoutPage({
   params,
   searchParams,
 }: {
-  params: Promise<{ locale: Locale }>
+  params: Promise<{ locale: string }>
   searchParams: Promise<{ contract_id?: string }>
 }) {
-  const { locale } = await params
+  const { locale: localeParam } = await params
+  const locale = localeParam as Locale
   const { contract_id } = await searchParams
   // Redirect users to the contract editor; the editor's Review step
   // initiates Stripe Checkout. Going directly to Stripe without a

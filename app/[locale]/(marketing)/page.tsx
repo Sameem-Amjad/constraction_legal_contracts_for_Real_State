@@ -25,7 +25,7 @@ import { ScrollReveal } from '@/components/shared/ScrollReveal'
 import type { Locale } from '@/i18n'
 
 interface HomePageProps {
-  params: Promise<{ locale: Locale }>
+  params: Promise<{ locale: string }>
 }
 
 const HERO_VIDEO_SRC =
@@ -36,7 +36,8 @@ const SECTION_IMAGE =
   'https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=1400&q=70'
 
 export default async function HomePage({ params }: HomePageProps) {
-  const { locale } = await params
+  const { locale: localeParam } = await params
+  const locale = localeParam as Locale
   setRequestLocale(locale)
   const t = await getTranslations('marketing')
   const tc = await getTranslations('common')

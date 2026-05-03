@@ -11,9 +11,10 @@ import { adminSupabase } from '@/lib/supabase/admin'
 export default async function PricingPage({
   params,
 }: {
-  params: Promise<{ locale: Locale }>
+  params: Promise<{ locale: string }>
 }) {
-  const { locale } = await params
+  const { locale: localeParam } = await params
+  const locale = localeParam as Locale
   setRequestLocale(locale)
   const t = await getTranslations('marketing.plans')
 
