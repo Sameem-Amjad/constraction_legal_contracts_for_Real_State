@@ -1,8 +1,10 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import { Mail, MapPin } from 'lucide-react'
 import { getTranslations } from 'next-intl/server'
 
 import type { Locale } from '@/i18n'
+import { BRAND_LOGO_URL } from '@/lib/constants'
 
 const LEGAL_PAGES = {
   en: [
@@ -31,9 +33,15 @@ export async function Footer({ locale }: { locale: Locale }) {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Brand + tagline */}
           <div className="space-y-3">
-            <p className="font-heading text-xl font-bold tracking-tight">
-              <span className="text-brand-cobalt">Constr</span>Action
-            </p>
+            <Link href={`/${locale}`}>
+              <Image
+                src={BRAND_LOGO_URL}
+                alt="ConstrAction"
+                width={140}
+                height={40}
+                className="h-10 w-auto object-contain"
+              />
+            </Link>
             <p className="text-sm text-muted-foreground max-w-xs">
               {t('tagline')}
             </p>

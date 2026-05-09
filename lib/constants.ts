@@ -1,3 +1,6 @@
+export const BRAND_LOGO_URL =
+  'https://aneaqwvhbqcijysamcga.supabase.co/storage/v1/object/public/logos/fbf0022e-8600-415a-9d39-00d0e5005d5e/logo_1777903461784.png'
+
 export const PLAN_PRICES = {
   SINGLE_CONTRACT: 99,
   MONTHLY_SUBSCRIPTION: 349,
