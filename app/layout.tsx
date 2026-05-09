@@ -24,9 +24,15 @@ export const metadata: Metadata = {
   },
   description:
     'Quebec-compliant construction contracts in English or French. Generate, sign, and download in minutes.',
-  metadataBase: process.env.NEXT_PUBLIC_SITE_URL
-    ? new URL(process.env.NEXT_PUBLIC_SITE_URL)
-    : undefined,
+  metadataBase: (() => {
+    try {
+      return process.env.NEXT_PUBLIC_SITE_URL
+        ? new URL(process.env.NEXT_PUBLIC_SITE_URL)
+        : undefined
+    } catch {
+      return undefined
+    }
+  })(),
 }
 
 export default function RootLayout({
