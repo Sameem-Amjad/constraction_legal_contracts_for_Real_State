@@ -97,14 +97,19 @@ export function PartyForm({
             value={data.company_name ?? ''}
             onChange={(v) => set('company_name', v)}
           />
-          {data.entity_type === 'company' ? (
+          {data.entity_type === 'company' || data.entity_type === 'other' ? (
             <div className="space-y-2">
               <Label>{t('incorporationRegime')}</Label>
               <Select
-                value={data.incorporation_regime ?? ''}
-                onValueChange={(v) =>
-                  set('incorporation_regime', v as 'quebec_inc' | 'canada_inc')
-                }
+                value={data.incorporation_regime ?? 'other_regime'}
+                onValueChange={(v) => {
+                  if (v === 'other_regime') {
+                    set('incorporation_regime', undefined)
+                  } else {
+                    set('incorporation_regime', v as 'quebec_inc' | 'canada_inc')
+                    set('other_incorporation_regime', undefined)
+                  }
+                }}
               >
                 <SelectTrigger>
                   <SelectValue placeholder="—" />
@@ -112,8 +117,16 @@ export function PartyForm({
                 <SelectContent>
                   <SelectItem value="quebec_inc">{t('quebecInc')}</SelectItem>
                   <SelectItem value="canada_inc">{t('canadaInc')}</SelectItem>
+                  <SelectItem value="other_regime">{tw('otherRegime')}</SelectItem>
                 </SelectContent>
               </Select>
+              {!data.incorporation_regime ? (
+                <Input
+                  placeholder={tw('otherRegimePlaceholder')}
+                  value={data.other_incorporation_regime ?? ''}
+                  onChange={(e) => set('other_incorporation_regime', e.target.value)}
+                />
+              ) : null}
             </div>
           ) : null}
           <Field

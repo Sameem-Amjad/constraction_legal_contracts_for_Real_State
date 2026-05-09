@@ -14,12 +14,15 @@ interface BasicsStepProps {
   onNext: (data: BasicsStepInput) => void
   /** True when on the Contractor → Client flow; shows the property-owner type sub-question */
   showOwnerTypeQuestion?: boolean
+  /** True when on the GC → Subcontractor flow; shows the immovable owner fields */
+  showOwnerFields?: boolean
 }
 
 export function BasicsStep({
   state,
   onNext,
   showOwnerTypeQuestion,
+  showOwnerFields,
 }: BasicsStepProps) {
   const t = useTranslations('wizard.basics')
   const [data, setData] = useState<BasicsStepInput>(state.basics)
@@ -108,6 +111,36 @@ export function BasicsStep({
           ) : null}
         </div>
       </div>
+
+      {showOwnerFields ? (
+        <fieldset className="space-y-3 rounded-lg border-2 border-brand-cobalt/20 bg-blue-50/30 p-4">
+          <Label className="text-sm font-semibold">{t('ownerInfo')}</Label>
+          <p className="text-xs text-muted-foreground">{t('ownerInfoHint')}</p>
+          <Field
+            label={t('ownerName')}
+            value={data.owner_name ?? ''}
+            onChange={(v) => set('owner_name', v)}
+          />
+          <div className="grid gap-4 md:grid-cols-2">
+            <Field
+              className="md:col-span-2"
+              label={t('ownerAddress')}
+              value={data.owner_address ?? ''}
+              onChange={(v) => set('owner_address', v)}
+            />
+            <Field
+              label={t('ownerCity')}
+              value={data.owner_city ?? ''}
+              onChange={(v) => set('owner_city', v)}
+            />
+            <Field
+              label={t('ownerPostal')}
+              value={data.owner_postal ?? ''}
+              onChange={(v) => set('owner_postal', v)}
+            />
+          </div>
+        </fieldset>
+      ) : null}
 
       {showOwnerTypeQuestion ? (
         <fieldset className="space-y-3 rounded-lg border-2 border-brand-orange/20 bg-orange-50/30 p-4">

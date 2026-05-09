@@ -32,6 +32,7 @@ const t = {
       `This Subcontract Agreement is entered into on ${date} under the laws of the Province of Quebec by and between:`,
     gcHeading: 'General Contractor',
     subHeading: 'Subcontractor',
+    ownerLabel: 'Owner',
     rbq: 'RBQ Licence No.',
     purpose:
       'The purpose of this Agreement is to set forth the terms and conditions under which the Subcontractor will provide services to the General Contractor. This Agreement outlines the scope of services, the responsibilities of each Party, the compensation payable, and other terms pertinent to the contractual relationship established herein.',
@@ -105,51 +106,93 @@ const t = {
     s16Title: '16. Denunciation Notice (Legal Hypothec)',
     s16Body:
       'If the Subcontractor wishes to preserve the right to a legal hypothec on the immovable, it must send a Denunciation Notice to the Owner in accordance with article 2728 C.C.Q. The General Contractor shall, upon request, provide a copy of the Prime Contract for this purpose.',
-    s17Title: '17. Force Majeure',
+    s_assignmentTitle: '17. Assignment',
+    s_assignmentBody:
+      'Neither party may assign this Agreement or any portion thereof without the prior written consent of the other party, which shall not be unreasonably withheld.',
+    s17Title: '18. Force Majeure',
     s17Body:
       'Delays due to superior force (force majeure) as defined in article 1470 C.C.Q., including acts of God, labour strikes, natural disasters, public health emergencies, pandemics, or government orders, shall excuse performance during the period of delay. The affected party must notify the other within forty-eight (48) hours. The parties shall act in good faith to revise the schedule, scope, or pricing.',
-    s18Title: '18. Termination',
+    s18Title: '19. Termination',
     s18Body:
       'Either party may terminate this Agreement upon written notice in the event of a material breach that remains uncured for ten (10) business days, except in cases of fraud or insolvency, in which case termination takes effect immediately. Upon termination, the Subcontractor shall be paid for all Work completed to date.',
     s18StepIn:
       'Step-in rights: If the Subcontractor fails to supply qualified labour, fails to maintain reasonable progress, fails to correct defective Work within the cure period, or fails to comply with health and safety obligations, and such default is not remedied within five (5) Business Days following written notice, the General Contractor may supplement the workforce, procure materials directly, or engage third parties to complete the affected Work, with all reasonable documented costs deductible from amounts otherwise payable.',
     s18Convenience:
       'Termination for convenience: Either party may terminate for convenience by providing thirty (30) days written notice. The Subcontractor shall be compensated for all Work performed up to the termination date.',
-    s19Title: '19. Confidentiality and Data Protection',
+    s19Title: '20. Confidentiality and Data Protection',
     s19Body:
       'The parties agree to maintain in confidence any proprietary, sensitive, or personal information obtained from each other and shall implement appropriate technical and organizational measures to protect such information. The parties shall comply with applicable data protection laws. In the event of a data breach, the affected party shall notify the other within forty-eight (48) hours. Upon termination, each party shall return or securely destroy all confidential information received.',
-    s20Title: '20. Dispute Resolution',
+    s20Title: '21. Dispute Resolution',
     s20Body:
       'In the event of a dispute, the parties shall first attempt resolution through direct negotiation within thirty (30) days. If unresolved, the parties shall submit to mediation by an accredited Quebec mediator selected by mutual agreement within fifteen (15) days. Mediation shall conclude within sixty (60) days, with costs shared equally. Should mediation fail, either party may proceed to litigation in the judicial district where the Project Site is located.',
-    s21Title: '21. Health and Safety',
+    s_personnelTitle: '22. Subcontractor Personnel',
+    s_personnelBody:
+      'The Subcontractor shall provide qualified and properly trained personnel to carry out the Work. The Subcontractor remains solely responsible for its employees, agents, and lower-tier subcontractors, including all applicable payroll, employment insurance, and income tax withholdings.',
+    s21Title: '23. Health and Safety',
     s21Body:
       'The Subcontractor shall comply with all health and safety regulations applicable under Quebec law and CNESST standards, ensure a safe working environment, and report any incident within twenty-four (24) hours. The Subcontractor may suspend the affected portion of the Work where the General Contractor fails to address an immediate safety risk within forty-eight (48) hours of written notice.',
-    s22Title: '22. Indemnification',
+    s_environmentalTitle: '24. Environmental Compliance',
+    s_environmentalBody:
+      'The Subcontractor shall perform the Work in compliance with all applicable environmental laws and regulations. Any environmental damage caused by the Subcontractor shall be promptly remediated at the Subcontractor\'s sole cost.',
+    s22Title: '25. Indemnification',
     s22Body:
       'Each party agrees to indemnify and hold harmless the other party against claims, damages, losses, and expenses directly resulting from the indemnifying party\'s fault or negligence in performing its obligations under this Agreement, including bodily injury, sickness, death, or property damage, except to the extent covered by a government-administered insurance scheme such as the CNESST. This indemnity is subject to articles 1474 and 1475 C.C.Q. The Subcontractor\'s liability shall not exceed the Contract Price, except in cases of gross negligence or willful misconduct. The indemnification obligations survive termination.',
-    s23Title: '23. Sub-Subcontracting',
+    s_nonSolicitationTitle: '26. Non-Solicitation',
+    s_nonSolicitationBody:
+      'During the term of this Agreement and for a period of twelve (12) months thereafter, neither party shall solicit for employment or engagement the employees, subcontractors, or clients of the other party without prior written consent.',
+    s23Title: '27. Sub-Subcontracting',
     s23Body:
       'The Subcontractor may not further subcontract any portion of the Work without the prior written consent of the General Contractor, which shall not be unreasonably withheld. The Subcontractor shall remain fully responsible for all Work, including portions performed by sub-subcontractors. The Subcontractor shall ensure all suppliers and lower-tier subcontractors are paid in full and on time, and shall discharge any legal hypothec registered against the Owner\'s property within ten (10) business days.',
-    s24Title: '24. Acceptance and Deficiency Correction',
+    s_cleanupTitle: '28. Cleanup',
+    s_cleanupBody:
+      'The Subcontractor shall maintain a clean and orderly job site and shall remove all debris, waste materials, and tools upon completion of the Work or as directed by the General Contractor.',
+    s24Title: '29. Acceptance of Work',
     s24Body: (inspectionDays: number) =>
-      `The Work shall be considered accepted upon inspection by the General Contractor and written confirmation of acceptance, or upon the absence of any deficiency report within ${inspectionDays} days of completion provided the Subcontractor has given written notice of completion. If deficiencies are discovered, the Subcontractor shall correct them within ten (10) business days at no additional cost. Failure to do so permits the General Contractor to rectify the issue and deduct reasonable costs from amounts owed.`,
+      `The Work shall be considered accepted upon inspection by the General Contractor and written confirmation of acceptance, or upon the absence of any deficiency report within ${inspectionDays} days of completion provided the Subcontractor has given written notice of completion.`,
+    s_deficiencyTitle: '30. Deficiency Correction',
+    s_deficiencyBody:
+      'If deficiencies are discovered, the Subcontractor shall correct them within ten (10) business days at no additional cost. Failure to do so permits the General Contractor to rectify the issue and deduct reasonable costs from amounts owed.',
     s24BodySuspension: (
       adjustDays: number,
       terminateDays: number,
       resumeDays: number
     ) =>
       `In the event of work suspension: the Subcontractor may request an adjustment to the schedule or contract price after ${adjustDays} day(s) of suspension; may terminate this Agreement after ${terminateDays} day(s) of continuous suspension; and shall submit any retroactive adjustment claim within ${resumeDays} day(s) of work resumption.`,
-    s25Title: '25. Intellectual Property',
+    s25Title: '31. Intellectual Property',
     s25Body:
       'All intellectual property rights in designs, plans, drawings, and other materials created by the Subcontractor (the "Work Product") shall be assigned to the General Contractor (and, where applicable under the Prime Contract, to the Owner) upon payment in full, subject to moral rights which cannot be assigned under Quebec law. Until full payment, the Subcontractor grants a non-exclusive, perpetual, royalty-free licence to use the Work Product for any purpose related to the Project. The Subcontractor warrants that the Work Product does not infringe any third-party rights.',
-    s26Title: '26. Notices',
+    s26Title: '32. Notices',
     s26Body:
       'All notices shall be given in writing and delivered by personal delivery, email, or registered mail to the addresses indicated above. Notices delivered by hand or email are deemed received on the date of transmission (or the next Business Day if after 4:30 PM). Notices delivered by registered mail are deemed received on the next Business Day following delivery.',
-    s27Title: '27. General Provisions',
+    s27Title: '33. Waiver',
+    s27aBody:
+      'No waiver of any breach shall constitute a waiver of any other breach; all waivers must be in writing.',
+    s27bTitle: '34. Severability',
+    s27bBody:
+      'If any provision is held invalid, the remainder shall remain in full force and effect.',
+    s27cTitle: '35. Counterparts and Electronic Signature',
+    s27cBody:
+      'This Agreement may be executed in counterparts and signed electronically, with electronic signatures having the same force as original signatures.',
+    s27dTitle: '36. Order of Precedence',
+    s27dBody:
+      'In the event of any inconsistency between the documents forming part of this Agreement, the following order of precedence shall apply: (a) duly executed Change Orders; (b) this Agreement including its appendices; (c) the plans and specifications related to the Work; (d) any other documents identified by the parties.',
+    s27eTitle: '37. Entire Agreement',
+    s27eBody:
+      'This Agreement, including its appendices, represents the entire agreement and supersedes all prior discussions, representations, or agreements, whether written or oral.',
+    s27fTitle: '38. Survival',
+    s27fBody:
+      'Provisions relating to indemnification, confidentiality, payment obligations, dispute resolution, warranty, insurance, and intellectual property shall survive termination.',
+    s27gTitle: '39. Language',
+    s27gBody:
+      'The parties expressly agree that this Agreement be drawn up in English. Les parties conviennent expressément que le présent contrat soit rédigé en anglais. Une version française sera également disponible.',
+    s27Title_legacy: '33. General Provisions',
     s27Body:
       'No waiver of any breach shall constitute a waiver of any other breach; all waivers must be in writing. If any provision is held invalid, the remainder shall remain in full force. This Agreement may be executed in counterparts and signed electronically, with electronic signatures having the same force as original signatures. This Agreement, including its appendices, represents the entire agreement and supersedes all prior discussions. Provisions relating to indemnification, confidentiality, payment obligations, dispute resolution, warranty, insurance, and intellectual property shall survive termination.',
-    s28Title: '28. Additional Provisions',
-    s28Default: 'N/A',
+    s28Title: '40. Non-Exclusivity',
+    s28aBody:
+      'This Agreement is non-exclusive. The Subcontractor may enter into agreements with other parties for similar work, provided such work does not conflict with obligations under this Agreement.',
+    s_additionalTitle: '44. Additional Provisions',
+    s_additionalDefault: 'N/A',
     signatureTitle: 'Signatures',
     gcSig: 'General Contractor',
     subSig: 'Subcontractor',
@@ -191,6 +234,7 @@ const t = {
       `Le présent contrat de sous-traitance est conclu le ${date} en vertu des lois de la province de Québec par et entre :`,
     gcHeading: 'Entrepreneur général',
     subHeading: 'Sous-traitant',
+    ownerLabel: 'Propriétaire',
     rbq: 'No. de licence RBQ',
     purpose:
       "Le présent Contrat a pour objet de définir les conditions dans lesquelles le Sous-traitant fournira des services à l'Entrepreneur général. Le présent Contrat décrit l'étendue des services à fournir, les responsabilités de chaque partie, la rémunération à verser et les autres conditions relatives à la relation contractuelle établie par le présent Contrat.",
@@ -264,51 +308,93 @@ const t = {
     s16Title: '16. Avis de dénonciation (hypothèque légale)',
     s16Body:
       "Si le Sous-traitant souhaite préserver le droit à une hypothèque légale sur l'immeuble, il doit envoyer un Avis de dénonciation au Propriétaire conformément à l'article 2728 C.c.Q. L'Entrepreneur général fournira, sur demande, une copie du Contrat principal à cette fin.",
-    s17Title: '17. Force majeure',
+    s_assignmentTitle: '17. Cession',
+    s_assignmentBody:
+      "Aucune des parties ne peut céder tout ou partie du présent Contrat sans le consentement écrit préalable de l'autre partie, lequel ne peut être refusé sans motif valable.",
+    s17Title: '18. Force majeure',
     s17Body:
       "Les retards dus à un cas de force majeure tel que défini à l'article 1470 C.c.Q., y compris les catastrophes naturelles, les grèves, les urgences sanitaires, les pandémies ou les ordres gouvernementaux, excusent l'exécution pendant la période de retard. La partie touchée doit aviser l'autre dans les quarante-huit (48) heures. Les parties agiront de bonne foi pour réviser le calendrier, la portée ou le prix.",
-    s18Title: '18. Résiliation',
+    s18Title: '19. Résiliation',
     s18Body:
       "L'une ou l'autre des parties peut résilier le présent Contrat sur préavis écrit en cas de manquement substantiel non corrigé dans les dix (10) jours ouvrables, sauf en cas de fraude ou d'insolvabilité, auquel cas la résiliation prend effet immédiatement. À la résiliation, le Sous-traitant sera payé pour tous les Travaux exécutés à ce jour.",
     s18StepIn:
       "Droits d'intervention : Si le Sous-traitant ne fournit pas une main-d'œuvre qualifiée, ne maintient pas un progrès raisonnable, ne corrige pas les Travaux défectueux dans le délai de remédiation, ou ne respecte pas les obligations de santé et sécurité, et que ce manquement n'est pas corrigé dans les cinq (5) jours ouvrables suivant l'avis écrit, l'Entrepreneur général peut compléter la main-d'œuvre, se procurer des matériaux directement, ou retenir des tiers pour terminer les Travaux affectés, tous les coûts raisonnables documentés étant déductibles des montants autrement payables.",
     s18Convenience:
       "Résiliation pour convenance : L'une ou l'autre des parties peut résilier pour convenance moyennant un préavis écrit de trente (30) jours. Le Sous-traitant sera rémunéré pour tous les Travaux exécutés jusqu'à la date de résiliation.",
-    s19Title: '19. Confidentialité et protection des données',
+    s19Title: '20. Confidentialité et protection des données',
     s19Body:
       "Les parties conviennent de garder confidentielle toute information exclusive, sensible ou personnelle obtenue l'une de l'autre et mettront en œuvre des mesures techniques et organisationnelles appropriées pour protéger ces informations. Les parties se conformeront aux lois applicables sur la protection des données. En cas de violation de données, la partie touchée avisera l'autre dans les quarante-huit (48) heures. À la résiliation, chaque partie retournera ou détruira de manière sécurisée toutes les informations confidentielles reçues.",
-    s20Title: '20. Résolution des différends',
+    s20Title: '21. Résolution des différends',
     s20Body:
       "En cas de différend, les parties tenteront d'abord une résolution par négociation directe dans les trente (30) jours. Si non résolu, les parties soumettront le différend à la médiation par un médiateur québécois accrédité choisi par accord mutuel dans les quinze (15) jours. La médiation se conclura dans les soixante (60) jours, les coûts étant partagés également. Si la médiation échoue, l'une ou l'autre des parties peut entamer une procédure judiciaire dans le district où se trouve le Site du Projet.",
-    s21Title: '21. Santé et sécurité',
+    s_personnelTitle: '22. Personnel du sous-traitant',
+    s_personnelBody:
+      "Le Sous-traitant doit fournir un personnel qualifié et correctement formé pour l'exécution des Travaux. Le Sous-traitant reste seul responsable de ses employés, agents et sous-traitants de niveau inférieur, y compris de toutes les retenues salariales et cotisations applicables.",
+    s21Title: '23. Santé et sécurité',
     s21Body:
       "Le Sous-traitant se conformera à toutes les réglementations en matière de santé et de sécurité applicables en vertu du droit québécois et des normes de la CNESST, assurera un environnement de travail sécuritaire et signalera tout incident dans les vingt-quatre (24) heures. Le Sous-traitant peut suspendre la portion affectée des Travaux si l'Entrepreneur général ne corrige pas un risque de sécurité immédiat dans les quarante-huit (48) heures suivant l'avis écrit.",
-    s22Title: '22. Indemnisation',
+    s_environmentalTitle: '24. Conformité environnementale',
+    s_environmentalBody:
+      "Le Sous-traitant exécutera les Travaux en conformité avec toutes les lois et réglementations environnementales applicables. Tout dommage environnemental causé par le Sous-traitant devra être promptement remédié à ses seuls frais.",
+    s22Title: '25. Indemnisation',
     s22Body:
       "Chaque partie s'engage à indemniser et à dégager de toute responsabilité l'autre partie contre les réclamations, dommages, pertes et dépenses résultant directement de la faute ou de la négligence de la partie indemnisante dans l'exécution de ses obligations en vertu du présent Contrat, y compris les blessures corporelles, la maladie, le décès ou les dommages matériels, sauf dans la mesure couverte par un régime d'assurance gouvernemental tel que la CNESST. Cette indemnité est sujette aux articles 1474 et 1475 C.c.Q. La responsabilité du Sous-traitant ne dépassera pas le Prix du contrat, sauf en cas de négligence grave ou de faute lourde. Les obligations d'indemnisation survivent à la résiliation.",
-    s23Title: '23. Sous-sous-traitance',
+    s_nonSolicitationTitle: '26. Non-sollicitation',
+    s_nonSolicitationBody:
+      "Pendant la durée du présent Contrat et pour une période de douze (12) mois par la suite, aucune des parties ne sollicitera les employés, sous-traitants ou clients de l'autre partie sans consentement écrit préalable.",
+    s23Title: '27. Sous-sous-traitance',
     s23Body:
       "Le Sous-traitant ne peut sous-traiter davantage aucune partie des Travaux sans le consentement écrit préalable de l'Entrepreneur général, lequel ne sera pas refusé sans motif raisonnable. Le Sous-traitant demeure entièrement responsable de tous les Travaux, y compris ceux exécutés par les sous-sous-traitants. Le Sous-traitant s'assurera que tous les fournisseurs et sous-traitants de niveau inférieur sont payés intégralement et à temps, et fera radier toute hypothèque légale inscrite contre la propriété du Propriétaire dans les dix (10) jours ouvrables.",
-    s24Title: '24. Acceptation et correction des déficiences',
+    s_cleanupTitle: '28. Nettoyage',
+    s_cleanupBody:
+      "Le Sous-traitant maintiendra un chantier propre et ordonné et enlèvera tous les débris, matériaux de déchets et outils à l'achèvement des Travaux ou selon les directives de l'Entrepreneur général.",
+    s24Title: '29. Acceptation des travaux',
+    s24Body: (inspectionDays: number) =>
+      `Les Travaux seront considérés comme acceptés sur inspection par l'Entrepreneur général et confirmation écrite, ou en l'absence de tout rapport de déficience dans les ${inspectionDays} jours suivant l'achèvement, à condition que le Sous-traitant ait donné un avis écrit d'achèvement.`,
+    s_deficiencyTitle: '30. Correction des déficiences',
+    s_deficiencyBody:
+      "Si des déficiences sont découvertes, le Sous-traitant les corrigera dans les dix (10) jours ouvrables sans coût supplémentaire. À défaut, l'Entrepreneur général peut rectifier le problème et déduire les coûts raisonnables des montants dus.",
     s24BodySuspension: (
       adjustDays: number,
       terminateDays: number,
       resumeDays: number
     ) =>
       `En cas de suspension des travaux : le Sous-traitant peut demander un ajustement du calendrier ou du prix du contrat après ${adjustDays} jour(s) de suspension ; peut résilier le présent Contrat après ${terminateDays} jour(s) de suspension continue ; et doit soumettre toute demande d'ajustement rétroactif dans les ${resumeDays} jour(s) suivant la reprise des travaux.`,
-    s24Body: (inspectionDays: number) =>
-      `Les Travaux seront considérés comme acceptés sur inspection par l'Entrepreneur général et confirmation écrite, ou en l'absence de tout rapport de déficience dans les ${inspectionDays} jours suivant l'achèvement, à condition que le Sous-traitant ait donné un avis écrit d'achèvement. Si des déficiences sont découvertes, le Sous-traitant les corrigera dans les dix (10) jours ouvrables sans coût supplémentaire. À défaut, l'Entrepreneur général peut rectifier le problème et déduire les coûts raisonnables des montants dus.`,
-    s25Title: '25. Propriété intellectuelle',
+    s25Title: '31. Propriété intellectuelle',
     s25Body:
       "Tous les droits de propriété intellectuelle dans les conceptions, plans, dessins et autres documents créés par le Sous-traitant (le « Produit du travail ») seront cédés à l'Entrepreneur général (et, le cas échéant en vertu du Contrat principal, au Propriétaire) lors du paiement intégral, sous réserve des droits moraux qui ne peuvent être cédés en vertu du droit québécois. Jusqu'au paiement intégral, le Sous-traitant accorde une licence non exclusive, perpétuelle et libre de redevances pour utiliser le Produit du travail à toute fin liée au Projet. Le Sous-traitant garantit que le Produit du travail ne porte pas atteinte aux droits de tiers.",
-    s26Title: '26. Avis',
+    s26Title: '32. Avis',
     s26Body:
       "Tous les avis seront donnés par écrit et livrés en personne, par courriel ou par courrier recommandé aux adresses indiquées ci-dessus. Les avis livrés en mains propres ou par courriel sont réputés reçus à la date de transmission (ou le jour ouvrable suivant si après 16 h 30). Les avis livrés par courrier recommandé sont réputés reçus le jour ouvrable suivant la livraison.",
-    s27Title: '27. Dispositions générales',
+    s27Title: '33. Renonciation',
+    s27aBody:
+      "Aucune renonciation à un manquement ne constitue une renonciation à un autre manquement; toutes les renonciations doivent être écrites.",
+    s27bTitle: '34. Divisibilité',
+    s27bBody:
+      "Si une disposition est jugée invalide, le reste demeure en vigueur.",
+    s27cTitle: '35. Exemplaires et signature électronique',
+    s27cBody:
+      "Le présent Contrat peut être signé en exemplaires et électroniquement, les signatures électroniques ayant la même force que les signatures originales.",
+    s27dTitle: "36. Ordre de préséance",
+    s27dBody:
+      "En cas d'incompatibilité entre les documents faisant partie du présent Contrat, l'ordre de préséance suivant s'applique : (a) les Ordres de modification dûment signés; (b) le présent Contrat et ses annexes; (c) les plans et devis relatifs aux Travaux; (d) tout autre document identifié par les parties.",
+    s27eTitle: "37. Intégralité de l'entente",
+    s27eBody:
+      "Le présent Contrat, y compris ses annexes, représente l'entente complète et remplace toutes les discussions, représentations ou ententes antérieures, qu'elles soient écrites ou verbales.",
+    s27fTitle: '38. Survie',
+    s27fBody:
+      "Les dispositions relatives à l'indemnisation, à la confidentialité, aux obligations de paiement, à la résolution des différends, à la garantie, aux assurances et à la propriété intellectuelle survivent à la résiliation.",
+    s27gTitle: '39. Langue',
+    s27gBody:
+      "Les parties conviennent expressément que le présent contrat soit rédigé en français. The parties expressly agree that this Agreement be drawn up in French. An English version will also be available.",
+    s27Title_legacy: '33. Dispositions générales',
     s27Body:
       "Aucune renonciation à un manquement ne constitue une renonciation à un autre manquement; toutes les renonciations doivent être écrites. Si une disposition est jugée invalide, le reste demeure en vigueur. Le présent Contrat peut être signé en exemplaires et électroniquement, les signatures électroniques ayant la même force que les signatures originales. Le présent Contrat, y compris ses annexes, représente l'entente complète et remplace toutes les discussions antérieures. Les dispositions relatives à l'indemnisation, à la confidentialité, aux obligations de paiement, à la résolution des différends, à la garantie, aux assurances et à la propriété intellectuelle survivent à la résiliation.",
-    s28Title: '28. Dispositions additionnelles',
-    s28Default: 'S/O',
+    s28Title: "40. Non-exclusivité",
+    s28aBody:
+      "Le présent Contrat est non exclusif. Le Sous-traitant peut conclure des ententes avec d'autres parties pour des travaux similaires, sous réserve qu'ils ne soient pas en conflit avec ses obligations.",
+    s_additionalTitle: '44. Dispositions additionnelles',
+    s_additionalDefault: 'S/O',
     signatureTitle: 'Signatures',
     gcSig: 'Entrepreneur général',
     subSig: 'Sous-traitant',
@@ -432,6 +518,12 @@ export function GCDocument({
           {contract.contractor_email ? `\n${contract.contractor_email}` : ''}
           {contract.contractor_phone ? `\n${contract.contractor_phone}` : ''}
         </Text>
+        {meta.owner_name ? (
+          <Text style={styles.paragraph}>
+            <Text style={styles.bold}>{tr.ownerLabel}: </Text>
+            {meta.owner_name}
+          </Text>
+        ) : null}
 
         <Text style={styles.paragraph}>{tr.purpose}</Text>
 
@@ -502,7 +594,9 @@ export function GCDocument({
               <Text style={styles.bold}>
                 {language === 'fr' ? 'Acompte : ' : 'Advance payment: '}
               </Text>
-              {formatCurrencyForPdf(meta.advance_payment_amount, language)}
+              {meta.advance_payment_type === '%'
+                ? `${meta.advance_payment_amount}%`
+                : formatCurrencyForPdf(meta.advance_payment_amount, language)}
               {language === 'fr'
                 ? ' (déduit de la facture finale)'
                 : ' (deducted from final invoice)'}
@@ -611,33 +705,67 @@ export function GCDocument({
         <Text style={styles.sectionHeading}>{tr.s16Title}</Text>
         <Text style={styles.paragraph}>{tr.s16Body}</Text>
 
+        {/* 17. Assignment */}
+        <Text style={styles.sectionHeading}>{tr.s_assignmentTitle}</Text>
+        <Text style={styles.paragraph}>{tr.s_assignmentBody}</Text>
+
+        {/* 18. Force Majeure */}
         <Text style={styles.sectionHeading}>{tr.s17Title}</Text>
         <Text style={styles.paragraph}>{tr.s17Body}</Text>
 
+        {/* 19. Termination */}
         <Text style={styles.sectionHeading}>{tr.s18Title}</Text>
         <Text style={styles.paragraph}>{tr.s18Body}</Text>
         <Text style={styles.paragraph}>{tr.s18StepIn}</Text>
         <Text style={styles.paragraph}>{tr.s18Convenience}</Text>
 
+        {/* 20. Confidentiality */}
         <Text style={styles.sectionHeading}>{tr.s19Title}</Text>
         <Text style={styles.paragraph}>{tr.s19Body}</Text>
 
+        {/* 21. Dispute Resolution */}
         <Text style={styles.sectionHeading}>{tr.s20Title}</Text>
         <Text style={styles.paragraph}>{tr.s20Body}</Text>
 
+        {/* 22. Subcontractor Personnel */}
+        <Text style={styles.sectionHeading}>{tr.s_personnelTitle}</Text>
+        <Text style={styles.paragraph}>{tr.s_personnelBody}</Text>
+
+        {/* 23. Health and Safety */}
         <Text style={styles.sectionHeading}>{tr.s21Title}</Text>
         <Text style={styles.paragraph}>{tr.s21Body}</Text>
 
+        {/* 24. Environmental Compliance */}
+        <Text style={styles.sectionHeading}>{tr.s_environmentalTitle}</Text>
+        <Text style={styles.paragraph}>{tr.s_environmentalBody}</Text>
+
+        {/* 25. Indemnification */}
         <Text style={styles.sectionHeading}>{tr.s22Title}</Text>
         <Text style={styles.paragraph}>{tr.s22Body}</Text>
 
+        {/* 26. Non-Solicitation */}
+        <Text style={styles.sectionHeading}>{tr.s_nonSolicitationTitle}</Text>
+        <Text style={styles.paragraph}>{tr.s_nonSolicitationBody}</Text>
+
+        {/* 27. Sub-Subcontracting */}
         <Text style={styles.sectionHeading}>{tr.s23Title}</Text>
         <Text style={styles.paragraph}>{tr.s23Body}</Text>
 
+        {/* 28. Cleanup */}
+        <Text style={styles.sectionHeading}>{tr.s_cleanupTitle}</Text>
+        <Text style={styles.paragraph}>{tr.s_cleanupBody}</Text>
+
+        {/* 29. Acceptance of Work */}
         <Text style={styles.sectionHeading}>{tr.s24Title}</Text>
         <Text style={styles.paragraph}>
           {tr.s24Body(meta.inspection_period_days ?? 30)}
         </Text>
+
+        {/* 30. Deficiency Correction */}
+        <Text style={styles.sectionHeading}>{tr.s_deficiencyTitle}</Text>
+        <Text style={styles.paragraph}>{tr.s_deficiencyBody}</Text>
+
+        {/* Work Suspension (parametric — rendered inline after deficiency) */}
         <Text style={styles.paragraph}>
           {tr.s24BodySuspension(
             meta.suspension_request_adjustment_days ?? 30,
@@ -646,20 +774,46 @@ export function GCDocument({
           )}
         </Text>
 
+        {/* 31. Intellectual Property */}
         <Text style={styles.sectionHeading}>{tr.s25Title}</Text>
         <Text style={styles.paragraph}>{tr.s25Body}</Text>
 
+        {/* 32. Notices */}
         <Text style={styles.sectionHeading}>{tr.s26Title}</Text>
         <Text style={styles.paragraph}>{tr.s26Body}</Text>
 
+        {/* 33–39. General Provisions (individual clauses) */}
         <Text style={styles.sectionHeading}>{tr.s27Title}</Text>
-        <Text style={styles.paragraph}>{tr.s27Body}</Text>
+        <Text style={styles.paragraph}>{tr.s27aBody}</Text>
 
+        <Text style={styles.sectionHeading}>{tr.s27bTitle}</Text>
+        <Text style={styles.paragraph}>{tr.s27bBody}</Text>
+
+        <Text style={styles.sectionHeading}>{tr.s27cTitle}</Text>
+        <Text style={styles.paragraph}>{tr.s27cBody}</Text>
+
+        <Text style={styles.sectionHeading}>{tr.s27dTitle}</Text>
+        <Text style={styles.paragraph}>{tr.s27dBody}</Text>
+
+        <Text style={styles.sectionHeading}>{tr.s27eTitle}</Text>
+        <Text style={styles.paragraph}>{tr.s27eBody}</Text>
+
+        <Text style={styles.sectionHeading}>{tr.s27fTitle}</Text>
+        <Text style={styles.paragraph}>{tr.s27fBody}</Text>
+
+        <Text style={styles.sectionHeading}>{tr.s27gTitle}</Text>
+        <Text style={styles.paragraph}>{tr.s27gBody}</Text>
+
+        {/* 40. Non-Exclusivity */}
         <Text style={styles.sectionHeading}>{tr.s28Title}</Text>
+        <Text style={styles.paragraph}>{tr.s28aBody}</Text>
+
+        {/* 44. Additional Provisions */}
+        <Text style={styles.sectionHeading}>{tr.s_additionalTitle}</Text>
         <Text style={styles.paragraph}>
           {meta.extra_clauses && meta.extra_clauses.trim().length > 0
             ? meta.extra_clauses
-            : tr.s28Default}
+            : tr.s_additionalDefault}
         </Text>
 
         {/* Acknowledgement + Signatures */}

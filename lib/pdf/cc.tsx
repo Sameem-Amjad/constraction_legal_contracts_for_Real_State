@@ -98,47 +98,88 @@ const t = {
     s15Title: '15. Denunciation Notice',
     s15Body:
       'The Contractor agrees to disclose any subcontractors when required by the Client and to provide appropriate Denunciation Notices where applicable under article 2728 C.C.Q.',
-    s16Title: '16. Force Majeure',
+    s16Title: '16. Assignment',
     s16Body:
-      'Delays due to superior force (force majeure) as defined in article 1470 C.C.Q., including acts of God, labour strikes, natural disasters, public health emergencies, pandemics, or government orders, shall excuse performance during the period of delay. The affected party must notify the other party within forty-eight (48) hours of the occurrence. The parties shall act in good faith to revise the schedule, scope, or pricing to reflect the impact.',
-    s17Title: '17. Termination',
+      'Neither party may assign this Agreement or any portion thereof without the prior written consent of the other party, which shall not be unreasonably withheld.',
+    s17Title: '17. Force Majeure',
     s17Body:
-      'Either party may terminate this Agreement upon written notice in the event of a material breach that remains uncured for ten (10) business days after written notice, except in cases of fraud or insolvency, in which case termination takes effect immediately. Upon termination, the Contractor shall be paid for all Work completed to date.',
-    s17StepIn:
-      'Step-in rights: If the Contractor fails to supply qualified labour, fails to maintain reasonable progress, fails to correct defective Work within the cure period, or fails to comply with health and safety obligations, and such default is not remedied within five (5) Business Days following written notice, the Client may supplement the workforce, procure materials directly, or engage third parties to complete the affected Work, with all reasonable documented costs deductible from amounts otherwise payable to the Contractor.',
-    s17Convenience:
-      'Termination for convenience: Either party may terminate for convenience by providing thirty (30) days written notice. The Contractor shall be compensated for all Work performed up to the termination date.',
-    s18Title: '18. Confidentiality and Data Protection',
+      'Delays due to superior force (force majeure) as defined in article 1470 C.C.Q., including acts of God, labour strikes, natural disasters, public health emergencies, pandemics, or government orders, shall excuse performance during the period of delay. The affected party must notify the other party within forty-eight (48) hours of the occurrence. The parties shall act in good faith to revise the schedule, scope, or pricing to reflect the impact.',
+    s18Title: '18. Termination',
     s18Body:
-      'The parties agree to maintain in confidence any proprietary, sensitive, or personal information obtained from each other in connection with this Agreement, and shall implement appropriate technical and organizational measures to protect such information. The parties shall comply with applicable data protection laws. In the event of a data breach, the affected party shall notify the other within forty-eight (48) hours. Upon termination, each party shall return or securely destroy all confidential information received.',
-    s19Title: '19. Dispute Resolution',
+      'Either party may terminate this Agreement upon written notice in the event of a material breach that remains uncured for ten (10) business days after written notice, except in cases of fraud or insolvency, in which case termination takes effect immediately. Upon termination, the Contractor shall be paid for all Work completed to date.',
+    s18StepIn:
+      'Step-in rights: If the Contractor fails to supply qualified labour, fails to maintain reasonable progress, fails to correct defective Work within the cure period, or fails to comply with health and safety obligations, and such default is not remedied within five (5) Business Days following written notice, the Client may supplement the workforce, procure materials directly, or engage third parties to complete the affected Work, with all reasonable documented costs deductible from amounts otherwise payable to the Contractor.',
+    s19Title: '19. Termination for Convenience',
     s19Body:
-      'In the event of a dispute, the parties shall first attempt resolution through direct negotiation within thirty (30) days. If unresolved, the parties shall submit to mediation by an accredited Quebec mediator selected by mutual agreement within fifteen (15) days. Mediation shall conclude within sixty (60) days, with costs shared equally. Should mediation fail, either party may proceed to litigation in the judicial district where the Project Site is located.',
-    s20Title: '20. Health and Safety',
+      'Either party may terminate this Agreement for convenience by providing thirty (30) days written notice. Upon termination for convenience, neither party shall have any further liability to the other, except for obligations that have accrued prior to the termination date. The Contractor shall be compensated for all Work performed up to the date of termination.',
+    s20Title: '20. Confidentiality and Data Protection',
     s20Body:
-      'The Contractor shall comply with all health and safety regulations applicable under Quebec law and CNESST standards, ensure a safe working environment, and report any incident within twenty-four (24) hours. The Contractor may suspend the affected portion of the Work where the Client fails to address an immediate safety risk within forty-eight (48) hours of written notice.',
-    s21Title: '21. Indemnification',
+      'The parties agree to maintain in confidence any proprietary, sensitive, or personal information obtained from each other in connection with this Agreement, and shall implement appropriate technical and organizational measures to protect such information. The parties shall comply with applicable data protection laws. In the event of a data breach, the affected party shall notify the other within forty-eight (48) hours. Upon termination, each party shall return or securely destroy all confidential information received.',
+    s21Title: '21. Dispute Resolution',
     s21Body:
-      'Each party agrees to indemnify and hold harmless the other party against claims, damages, losses, and expenses directly resulting from the indemnifying party\'s fault or negligence in performing its obligations under this Agreement, including bodily injury, sickness, death, or property damage, except to the extent covered by a government-administered insurance scheme such as the CNESST. This indemnity is subject to articles 1474 and 1475 C.C.Q. The Contractor\'s liability shall not exceed the Contract Price, except in cases of gross negligence or willful misconduct. The indemnification obligations survive termination.',
-    s22Title: '22. Subcontracting',
+      'In the event of a dispute, the parties shall first attempt resolution through direct negotiation within thirty (30) days. If unresolved, the parties shall submit to mediation by an accredited Quebec mediator selected by mutual agreement within fifteen (15) days. Mediation shall conclude within sixty (60) days, with costs shared equally. Should mediation fail, either party may proceed to litigation in the judicial district where the Project Site is located.',
+    s22Title: '22. Contractor Personnel',
     s22Body:
-      'The Contractor may subcontract any portion of the Work, provided that any subcontractor is duly licensed, carries adequate insurance and CNESST registration, and has demonstrated the experience required. The Contractor remains fully responsible to the Client for all Work, including portions performed by subcontractors. The Contractor shall ensure all subcontractors and suppliers are paid in full and on time, and shall discharge any legal hypothec registered against the Client\'s property within ten (10) business days, failing which the Client may apply the Holdback to pay the unpaid party.',
-    s23Title: '23. Acceptance and Deficiency Correction',
-    s23Body: (inspectionDays: number) =>
-      `The Work shall be considered accepted upon inspection by the Client and written confirmation of acceptance, or upon the absence of any deficiency report within ${inspectionDays} days of completion provided the Contractor has given written notice of completion. If deficiencies are discovered, the Contractor shall correct them within ten (10) business days at no additional cost. Failure to do so permits the Client to rectify the issue and deduct reasonable costs from amounts owed.`,
-    s23BodySuspension: (adjustDays: number, terminateDays: number, resumeDays: number) =>
-      `In the event of work suspension: the Contractor may request an adjustment to the schedule or contract price after ${adjustDays} day(s) of suspension; may terminate this Agreement after ${terminateDays} day(s) of continuous suspension; and shall submit any retroactive adjustment claim within ${resumeDays} day(s) of work resumption.`,
-    s24Title: '24. Intellectual Property',
+      'The Contractor shall provide qualified and properly trained personnel to carry out the Work. The Contractor remains solely responsible for its employees, subcontractors, and agents, including all applicable payroll, employment insurance, and income tax withholdings.',
+    s23Title: '23. Health and Safety',
+    s23Body:
+      'The Contractor shall comply with all health and safety regulations applicable under Quebec law and CNESST standards, ensure a safe working environment, and report any incident within twenty-four (24) hours. In the event the Contractor identifies a condition at the Worksite that presents an immediate or serious risk, the Contractor shall notify the Client in writing without delay. If the Client fails to respond or implement corrective measures within forty-eight (48) hours, the Contractor may suspend the affected portion of the Work without penalty until the condition is remedied.',
+    s24Title: '24. Environmental Compliance',
     s24Body:
-      'All intellectual property rights in designs, plans, drawings, and other materials created by the Contractor (the "Work Product") shall be assigned to the Client upon payment in full, subject to moral rights which cannot be assigned under Quebec law. Until full payment, the Contractor grants the Client a non-exclusive, perpetual, royalty-free licence to use the Work Product for any purpose related to the Project. The Contractor warrants that the Work Product does not infringe any third-party rights and shall indemnify the Client against any direct claims arising from a breach of this warranty.',
-    s25Title: '25. Notices',
+      'The Contractor shall perform the Work in compliance with all applicable environmental laws and regulations. Any environmental damage caused by the Contractor shall be promptly remediated at the Contractor\'s sole cost.',
+    s25Title: '25. Indemnification',
     s25Body:
-      'All notices shall be given in writing and delivered by personal delivery, email, or registered mail to the addresses indicated above. Notices delivered by hand or email are deemed received on the date of transmission (or the next Business Day if after 4:30 PM). Notices delivered by registered mail are deemed received on the next Business Day following delivery.',
-    s26Title: '26. General Provisions',
+      'Each party agrees to indemnify and hold harmless the other party against claims, damages, losses, and expenses directly resulting from the indemnifying party\'s fault or negligence in performing its obligations under this Agreement, including bodily injury, sickness, death, or property damage, except to the extent covered by a government-administered insurance scheme such as the CNESST. This indemnity is subject to articles 1474 and 1475 C.C.Q. The Contractor\'s liability shall not exceed the Contract Price, except in cases of gross negligence or willful misconduct. The indemnification obligations survive termination.',
+    s26Title: '26. Notices',
     s26Body:
-      'No waiver of any breach shall constitute a waiver of any other breach; all waivers must be in writing. If any provision is held invalid, the remainder shall remain in full force. This Agreement may be executed in counterparts and signed electronically, with electronic signatures having the same force as original signatures. This Agreement, including its appendices, represents the entire agreement and supersedes all prior discussions. Provisions relating to indemnification, confidentiality, payment obligations, dispute resolution, warranty, insurance, and intellectual property shall survive termination.',
-    s27Title: '27. Additional Provisions',
-    s27Default: 'N/A',
+      'All notices shall be given in writing and delivered by personal delivery, email, or registered mail to the addresses indicated above. Notices delivered by hand or email are deemed received on the date of transmission (or the next Business Day if after 4:30 PM). Notices delivered by registered mail are deemed received on the next Business Day following delivery.',
+    s27Title: '27. Subcontracting and Responsibility for Payments',
+    s27Body:
+      'The Contractor may subcontract any portion of the Work, provided that any subcontractor is duly licensed, carries adequate insurance and CNESST registration, and has demonstrated the experience required. The Contractor remains fully responsible to the Client for all Work, including portions performed by subcontractors. The Contractor shall ensure all subcontractors and suppliers are paid in full and on time, and shall discharge any legal hypothec registered against the Client\'s property within ten (10) business days, failing which the Client may apply the Holdback to pay the unpaid party.',
+    s28Title: '28. Cleanup',
+    s28Body:
+      'The Contractor shall maintain a clean and orderly job site and shall remove all debris, waste materials, and tools upon completion of the Work or as directed by the Client.',
+    s29Title: '29. Acceptance of Work',
+    s29Body: (inspectionDays: number) =>
+      `The Work shall be considered accepted upon: inspection by the Client and written confirmation of acceptance; or absence of any deficiency report within ${inspectionDays} days of completion, provided the Contractor has given written notice of completion.`,
+    s30Title: '30. Deficiency Correction',
+    s30Body:
+      'If deficiencies are discovered, the Contractor shall correct them within ten (10) business days at no additional cost. Failure to do so permits the Client to rectify the issue and deduct reasonable costs from amounts owed.',
+    s31Title: '31. Intellectual Property',
+    s31Body:
+      'All intellectual property rights in designs, plans, drawings, and other materials created by the Contractor (the "Work Product") shall be assigned to the Client upon payment in full, subject to moral rights which cannot be assigned under Quebec law. Until full payment, the Contractor grants the Client a non-exclusive, perpetual, royalty-free licence to use the Work Product for any purpose related to the Project. The Contractor warrants that the Work Product does not infringe any third-party rights and shall indemnify the Client against any direct claims arising from a breach of this warranty.',
+    s32Title: '32. Work Suspension',
+    s32Body: (adjustDays: number, terminateDays: number, resumeDays: number) =>
+      `The Client may suspend the Work in whole or in part. If the suspension exceeds ${adjustDays} calendar days, the Contractor may request an adjustment to the schedule or contract price, or if suspension exceeds ${terminateDays} calendar days without resumption, terminate the Agreement without penalty. Any claim must be submitted within ${resumeDays} days of resumption or termination.`,
+    s33Title: '33. Waiver',
+    s33Body:
+      'No waiver by either party of any breach shall constitute a waiver of any other breach. All waivers must be in writing.',
+    s34Title: '34. Severability',
+    s34Body:
+      'If any provision of this Agreement is found to be invalid or unenforceable, such provision shall be severed, and the remainder of the Agreement shall remain in full force and effect.',
+    s35Title: '35. Counterparts',
+    s35Body:
+      'This Agreement may be executed in counterparts, each of which shall be deemed an original, and all of which shall constitute the same instrument.',
+    s36Title: '36. Electronic Signature',
+    s36Body:
+      'The parties agree that this Agreement may be signed electronically and that such electronic signatures shall have the same force and effect as original signatures.',
+    s37Title: '37. No Exclusivity',
+    s37Body:
+      'This Agreement is non-exclusive. The Contractor may enter into agreements with other parties for similar work, provided such work does not conflict with obligations under this Agreement.',
+    s38Title: '38. Order of Precedence',
+    s38Body:
+      'In the event of any inconsistency between the documents forming part of this Agreement, the following order of precedence shall apply: (a) duly executed Change Orders; (b) this Agreement including its appendices; (c) the plans and specifications related to the Work; (d) any other documents identified by the parties.',
+    s39Title: '39. Entire Agreement',
+    s39Body:
+      'This document, including its appendices, represents the entire agreement between the parties and supersedes all prior discussions, representations, or agreements, whether written or oral.',
+    s40Title: '40. Survival',
+    s40Body:
+      'The following provisions shall survive termination: (a) Indemnification; (b) Confidentiality; (c) Payment obligations accrued prior to termination; (d) Dispute Resolution; (e) Warranty; (f) Insurance; (g) Intellectual Property.',
+    s41Title: '41. Language',
+    s41Body:
+      'The parties expressly agree that this Agreement be drawn up in English. Les parties conviennent expressément que le présent contrat soit rédigé en anglais. Une version française sera également disponible.',
+    s42Title: '42. Additional Provisions',
+    s42Default: 'N/A',
     signatureTitle: 'Signatures',
     clientSig: 'Client (Property Owner)',
     contractorSig: 'Contractor',
@@ -247,47 +288,88 @@ const t = {
     s15Title: '15. Avis de dénonciation',
     s15Body:
       "L'Entrepreneur s'engage à divulguer tout sous-traitant lorsque le Client le demande et à fournir les Avis de dénonciation appropriés en vertu de l'article 2728 C.c.Q. lorsqu'applicable.",
-    s16Title: '16. Force majeure',
+    s16Title: '16. Cession',
     s16Body:
-      "Les retards dus à un cas de force majeure tel que défini à l'article 1470 C.c.Q., y compris les catastrophes naturelles, les grèves, les urgences sanitaires, les pandémies ou les ordres gouvernementaux, excusent l'exécution pendant la période de retard. La partie touchée doit aviser l'autre partie dans les quarante-huit (48) heures de l'événement. Les parties agiront de bonne foi pour réviser le calendrier, la portée ou le prix afin de refléter l'impact.",
-    s17Title: '17. Résiliation',
+      "Aucune des parties ne peut céder tout ou partie du présent Contrat sans le consentement écrit préalable de l'autre partie, lequel ne peut être refusé sans motif valable.",
+    s17Title: '17. Force majeure',
     s17Body:
-      "L'une ou l'autre des parties peut résilier le présent Contrat sur préavis écrit en cas de manquement substantiel non corrigé dans les dix (10) jours ouvrables suivant la mise en demeure, sauf en cas de fraude ou d'insolvabilité, auquel cas la résiliation prend effet immédiatement. À la résiliation, l'Entrepreneur sera payé pour tous les Travaux exécutés à ce jour.",
-    s17StepIn:
-      "Droits d'intervention : Si l'Entrepreneur ne fournit pas une main-d'œuvre qualifiée, ne maintient pas un progrès raisonnable, ne corrige pas les Travaux défectueux dans le délai de remédiation, ou ne respecte pas les obligations de santé et sécurité, et que ce manquement n'est pas corrigé dans les cinq (5) jours ouvrables suivant l'avis écrit, le Client peut compléter la main-d'œuvre, se procurer des matériaux directement, ou retenir des tiers pour terminer les Travaux affectés, tous les coûts raisonnables documentés étant déductibles des montants autrement payables à l'Entrepreneur.",
-    s17Convenience:
-      "Résiliation pour convenance : L'une ou l'autre des parties peut résilier pour convenance moyennant un préavis écrit de trente (30) jours. L'Entrepreneur sera rémunéré pour tous les Travaux exécutés jusqu'à la date de résiliation.",
-    s18Title: '18. Confidentialité et protection des données',
+      "Les retards dus à un cas de force majeure tel que défini à l'article 1470 C.c.Q., y compris les catastrophes naturelles, les grèves, les urgences sanitaires, les pandémies ou les ordres gouvernementaux, excusent l'exécution pendant la période de retard. La partie touchée doit aviser l'autre partie dans les quarante-huit (48) heures de l'événement. Les parties agiront de bonne foi pour réviser le calendrier, la portée ou le prix afin de refléter l'impact.",
+    s18Title: '18. Résiliation',
     s18Body:
-      "Les parties conviennent de garder confidentielle toute information exclusive, sensible ou personnelle obtenue l'une de l'autre dans le cadre du présent Contrat, et mettront en œuvre des mesures techniques et organisationnelles appropriées pour protéger ces informations. Les parties se conformeront aux lois applicables sur la protection des données. En cas de violation de données, la partie touchée avisera l'autre dans les quarante-huit (48) heures. À la résiliation, chaque partie retournera ou détruira de manière sécurisée toutes les informations confidentielles reçues.",
-    s19Title: '19. Résolution des différends',
+      "L'une ou l'autre des parties peut résilier le présent Contrat sur préavis écrit en cas de manquement substantiel non corrigé dans les dix (10) jours ouvrables suivant la mise en demeure, sauf en cas de fraude ou d'insolvabilité, auquel cas la résiliation prend effet immédiatement. À la résiliation, l'Entrepreneur sera payé pour tous les Travaux exécutés à ce jour.",
+    s18StepIn:
+      "Droits d'intervention : Si l'Entrepreneur ne fournit pas une main-d'œuvre qualifiée, ne maintient pas un progrès raisonnable, ne corrige pas les Travaux défectueux dans le délai de remédiation, ou ne respecte pas les obligations de santé et sécurité, et que ce manquement n'est pas corrigé dans les cinq (5) jours ouvrables suivant l'avis écrit, le Client peut compléter la main-d'œuvre, se procurer des matériaux directement, ou retenir des tiers pour terminer les Travaux affectés, tous les coûts raisonnables documentés étant déductibles des montants autrement payables à l'Entrepreneur.",
+    s19Title: '19. Résiliation pour des raisons de commodité',
     s19Body:
-      "En cas de différend, les parties tenteront d'abord une résolution par négociation directe dans les trente (30) jours. Si non résolu, les parties soumettront le différend à la médiation par un médiateur québécois accrédité choisi par accord mutuel dans les quinze (15) jours. La médiation se conclura dans les soixante (60) jours, les coûts étant partagés également. Si la médiation échoue, l'une ou l'autre des parties peut entamer une procédure judiciaire dans le district où se trouve le Site du Projet.",
-    s20Title: '20. Santé et sécurité',
+      "Chaque partie peut résilier le présent Contrat pour des raisons de commodité en adressant un préavis écrit d'au moins trente (30) jours. En cas de résiliation, l'Entrepreneur sera rémunéré pour tous les Travaux exécutés jusqu'à la date de résiliation.",
+    s20Title: '20. Confidentialité et protection des données',
     s20Body:
-      "L'Entrepreneur se conformera à toutes les réglementations en matière de santé et de sécurité applicables en vertu du droit québécois et des normes de la CNESST, assurera un environnement de travail sécuritaire et signalera tout incident dans les vingt-quatre (24) heures. L'Entrepreneur peut suspendre la portion affectée des Travaux si le Client ne corrige pas un risque de sécurité immédiat dans les quarante-huit (48) heures suivant l'avis écrit.",
-    s21Title: '21. Indemnisation',
+      "Les parties conviennent de garder confidentielle toute information exclusive, sensible ou personnelle obtenue l'une de l'autre dans le cadre du présent Contrat, et mettront en œuvre des mesures techniques et organisationnelles appropriées pour protéger ces informations. Les parties se conformeront aux lois applicables sur la protection des données. En cas de violation de données, la partie touchée avisera l'autre dans les quarante-huit (48) heures. À la résiliation, chaque partie retournera ou détruira de manière sécurisée toutes les informations confidentielles reçues.",
+    s21Title: '21. Résolution des différends',
     s21Body:
-      "Chaque partie s'engage à indemniser et à dégager de toute responsabilité l'autre partie contre les réclamations, dommages, pertes et dépenses résultant directement de la faute ou de la négligence de la partie indemnisante dans l'exécution de ses obligations en vertu du présent Contrat, y compris les blessures corporelles, la maladie, le décès ou les dommages matériels, sauf dans la mesure couverte par un régime d'assurance gouvernemental tel que la CNESST. Cette indemnité est sujette aux articles 1474 et 1475 C.c.Q. La responsabilité de l'Entrepreneur ne dépassera pas le Prix du contrat, sauf en cas de négligence grave ou de faute lourde. Les obligations d'indemnisation survivent à la résiliation.",
-    s22Title: '22. Sous-traitance',
+      "En cas de différend, les parties tenteront d'abord une résolution par négociation directe dans les trente (30) jours. Si non résolu, les parties soumettront le différend à la médiation par un médiateur québécois accrédité choisi par accord mutuel dans les quinze (15) jours. La médiation se conclura dans les soixante (60) jours, les coûts étant partagés également. Si la médiation échoue, l'une ou l'autre des parties peut entamer une procédure judiciaire dans le district où se trouve le Site du Projet.",
+    s22Title: "22. Personnel de l'entrepreneur",
     s22Body:
-      "L'Entrepreneur peut sous-traiter toute partie des Travaux, à condition que le sous-traitant soit dûment licencié, dispose d'une assurance et d'une inscription CNESST adéquates, et démontre l'expérience requise. L'Entrepreneur demeure entièrement responsable envers le Client de tous les Travaux, y compris ceux exécutés par les sous-traitants. L'Entrepreneur s'assurera que tous les sous-traitants et fournisseurs sont payés intégralement et à temps, et fera radier toute hypothèque légale inscrite contre la propriété du Client dans les dix (10) jours ouvrables, à défaut de quoi le Client peut appliquer la Retenue pour payer la partie impayée.",
-    s23Title: '23. Acceptation et correction des déficiences',
-    s23BodySuspension: (adjustDays: number, terminateDays: number, resumeDays: number) =>
-      `En cas de suspension des travaux : l'Entrepreneur peut demander un ajustement du calendrier ou du prix du contrat après ${adjustDays} jour(s) de suspension ; peut résilier le présent Contrat après ${terminateDays} jour(s) de suspension continue ; et doit soumettre toute demande d'ajustement rétroactif dans les ${resumeDays} jour(s) suivant la reprise des travaux.`,
-    s23Body: (inspectionDays: number) =>
-      `Les Travaux seront considérés comme acceptés sur inspection par le Client et confirmation écrite, ou en l'absence de tout rapport de déficience dans les ${inspectionDays} jours suivant l'achèvement, à condition que l'Entrepreneur ait donné un avis écrit d'achèvement. Si des déficiences sont découvertes, l'Entrepreneur les corrigera dans les dix (10) jours ouvrables sans coût supplémentaire. À défaut, le Client peut rectifier le problème et déduire les coûts raisonnables des montants dus.`,
-    s24Title: '24. Propriété intellectuelle',
+      "L'Entrepreneur doit fournir un personnel qualifié et correctement formé pour l'exécution des Travaux. L'Entrepreneur reste seul responsable de ses employés, sous-traitants et agents, y compris de toutes les retenues salariales et cotisations applicables.",
+    s23Title: '23. Santé et sécurité',
+    s23Body:
+      "L'Entrepreneur se conformera à toutes les réglementations en matière de santé et de sécurité applicables en vertu du droit québécois et des normes de la CNESST, assurera un environnement de travail sécuritaire et signalera tout incident dans les vingt-quatre (24) heures. Dans l'éventualité où l'Entrepreneur identifie une condition sur le chantier présentant un risque immédiat ou grave, l'Entrepreneur avisera le Client par écrit sans délai. Si le Client ne répond pas ou ne met pas en œuvre les mesures correctives dans les quarante-huit (48) heures, l'Entrepreneur peut suspendre la portion affectée des Travaux sans pénalité jusqu'à ce que la condition soit remédiée.",
+    s24Title: '24. Conformité environnementale',
     s24Body:
-      "Tous les droits de propriété intellectuelle dans les conceptions, plans, dessins et autres documents créés par l'Entrepreneur (le « Produit du travail ») seront cédés au Client lors du paiement intégral, sous réserve des droits moraux qui ne peuvent être cédés en vertu du droit québécois. Jusqu'au paiement intégral, l'Entrepreneur accorde au Client une licence non exclusive, perpétuelle et libre de redevances pour utiliser le Produit du travail à toute fin liée au Projet. L'Entrepreneur garantit que le Produit du travail ne porte pas atteinte aux droits de tiers et indemnisera le Client contre toute réclamation directe résultant d'une violation de cette garantie.",
-    s25Title: '25. Avis',
+      "L'Entrepreneur exécutera les Travaux en conformité avec toutes les lois et réglementations environnementales applicables. Tout dommage environnemental causé par l'Entrepreneur devra être promptement remédié à ses seuls frais.",
+    s25Title: '25. Indemnisation',
     s25Body:
-      "Tous les avis seront donnés par écrit et livrés en personne, par courriel ou par courrier recommandé aux adresses indiquées ci-dessus. Les avis livrés en mains propres ou par courriel sont réputés reçus à la date de transmission (ou le jour ouvrable suivant si après 16 h 30). Les avis livrés par courrier recommandé sont réputés reçus le jour ouvrable suivant la livraison.",
-    s26Title: '26. Dispositions générales',
+      "Chaque partie s'engage à indemniser et à dégager de toute responsabilité l'autre partie contre les réclamations, dommages, pertes et dépenses résultant directement de la faute ou de la négligence de la partie indemnisante dans l'exécution de ses obligations en vertu du présent Contrat, y compris les blessures corporelles, la maladie, le décès ou les dommages matériels, sauf dans la mesure couverte par un régime d'assurance gouvernemental tel que la CNESST. Cette indemnité est sujette aux articles 1474 et 1475 C.c.Q. La responsabilité de l'Entrepreneur ne dépassera pas le Prix du contrat, sauf en cas de négligence grave ou de faute lourde. Les obligations d'indemnisation survivent à la résiliation.",
+    s26Title: '26. Avis',
     s26Body:
-      "Aucune renonciation à un manquement ne constitue une renonciation à un autre manquement; toutes les renonciations doivent être écrites. Si une disposition est jugée invalide, le reste demeure en vigueur. Le présent Contrat peut être signé en exemplaires et électroniquement, les signatures électroniques ayant la même force que les signatures originales. Le présent Contrat, y compris ses annexes, représente l'entente complète et remplace toutes les discussions antérieures. Les dispositions relatives à l'indemnisation, à la confidentialité, aux obligations de paiement, à la résolution des différends, à la garantie, aux assurances et à la propriété intellectuelle survivent à la résiliation.",
-    s27Title: '27. Dispositions additionnelles',
-    s27Default: 'S/O',
+      "Tous les avis seront donnés par écrit et livrés en personne, par courriel ou par courrier recommandé aux adresses indiquées ci-dessus. Les avis livrés en mains propres ou par courriel sont réputés reçus à la date de transmission (ou le jour ouvrable suivant si après 16 h 30). Les avis livrés par courrier recommandé sont réputés reçus le jour ouvrable suivant la livraison.",
+    s27Title: '27. Sous-traitance et responsabilité des paiements',
+    s27Body:
+      "L'Entrepreneur peut sous-traiter toute partie des Travaux, à condition que le sous-traitant soit dûment licencié, dispose d'une assurance et d'une inscription CNESST adéquates, et démontre l'expérience requise. L'Entrepreneur demeure entièrement responsable envers le Client de tous les Travaux, y compris ceux exécutés par les sous-traitants. L'Entrepreneur s'assurera que tous les sous-traitants et fournisseurs sont payés intégralement et à temps, et fera radier toute hypothèque légale inscrite contre la propriété du Client dans les dix (10) jours ouvrables, à défaut de quoi le Client peut appliquer la Retenue pour payer la partie impayée.",
+    s28Title: '28. Nettoyage',
+    s28Body:
+      "L'Entrepreneur maintiendra un chantier propre et ordonné et enlèvera tous les débris, matériaux de déchets et outils à l'achèvement des Travaux ou selon les directives du Client.",
+    s29Title: '29. Acceptation des travaux',
+    s29Body: (inspectionDays: number) =>
+      `Les Travaux seront considérés comme acceptés sur inspection par le Client et confirmation écrite, ou en l'absence de tout rapport de déficience dans les ${inspectionDays} jours suivant l'achèvement, à condition que l'Entrepreneur ait donné un avis écrit d'achèvement.`,
+    s30Title: '30. Correction des déficiences',
+    s30Body:
+      "Si des déficiences sont découvertes, l'Entrepreneur les corrigera dans les dix (10) jours ouvrables sans coût supplémentaire. À défaut, le Client peut rectifier le problème et déduire les coûts raisonnables des montants dus.",
+    s31Title: '31. Propriété intellectuelle',
+    s31Body:
+      "Tous les droits de propriété intellectuelle dans les conceptions, plans, dessins et autres documents créés par l'Entrepreneur (le « Produit du travail ») seront cédés au Client lors du paiement intégral, sous réserve des droits moraux qui ne peuvent être cédés en vertu du droit québécois. Jusqu'au paiement intégral, l'Entrepreneur accorde au Client une licence non exclusive, perpétuelle et libre de redevances pour utiliser le Produit du travail à toute fin liée au Projet. L'Entrepreneur garantit que le Produit du travail ne porte pas atteinte aux droits de tiers et indemnisera le Client contre toute réclamation directe résultant d'une violation de cette garantie.",
+    s32Title: '32. Suspension des travaux',
+    s32Body: (adjustDays: number, terminateDays: number, resumeDays: number) =>
+      `Le Client peut suspendre les Travaux en tout ou en partie. Si la suspension dépasse ${adjustDays} jours civils, l'Entrepreneur peut demander un ajustement du calendrier ou du prix du contrat, ou si elle dépasse ${terminateDays} jours sans reprise, résilier le Contrat sans pénalité. Toute réclamation doit être soumise dans les ${resumeDays} jours suivant la reprise ou la résiliation.`,
+    s33Title: '33. Renonciation',
+    s33Body:
+      "Aucune renonciation à un manquement ne constitue une renonciation à un autre; toutes les renonciations doivent être écrites.",
+    s34Title: '34. Divisibilité',
+    s34Body:
+      "Si une disposition est jugée invalide ou inapplicable, elle sera dissociée et le reste du Contrat demeurera en vigueur.",
+    s35Title: '35. Exemplaires',
+    s35Body:
+      "Le présent Contrat peut être signé en exemplaires, chacun étant réputé original et constituant ensemble le même instrument.",
+    s36Title: '36. Signature électronique',
+    s36Body:
+      "Les parties conviennent que le présent Contrat peut être signé électroniquement et que de telles signatures électroniques auront la même force et le même effet que les signatures originales.",
+    s37Title: '37. Non-exclusivité',
+    s37Body:
+      "Le présent Contrat est non exclusif. L'Entrepreneur peut conclure des ententes avec d'autres parties pour des travaux similaires, sous réserve qu'ils ne soient pas en conflit avec ses obligations au titre du présent Contrat.",
+    s38Title: "38. Ordre de préséance",
+    s38Body:
+      "En cas d'incompatibilité entre les documents faisant partie du présent Contrat, l'ordre de préséance suivant s'applique : (a) les Ordres de modification dûment signés; (b) le présent Contrat et ses annexes; (c) les plans et devis relatifs aux Travaux; (d) tout autre document identifié par les parties.",
+    s39Title: "39. Intégralité de l'entente",
+    s39Body:
+      "Le présent document, y compris ses annexes, représente l'entente complète entre les parties et remplace toutes discussions, représentations ou ententes antérieures, qu'elles soient écrites ou verbales.",
+    s40Title: '40. Survie',
+    s40Body:
+      "Les dispositions suivantes survivent à la résiliation : (a) Indemnisation; (b) Confidentialité; (c) Obligations de paiement accumulées avant la résiliation; (d) Résolution des différends; (e) Garantie; (f) Assurances; (g) Propriété intellectuelle.",
+    s41Title: '41. Langue',
+    s41Body:
+      "Les parties conviennent expressément que le présent contrat soit rédigé en français. The parties expressly agree that this Agreement be drawn up in French. An English version will also be available.",
+    s42Title: '42. Dispositions additionnelles',
+    s42Default: 'S/O',
     signatureTitle: 'Signatures',
     clientSig: 'Client (Propriétaire)',
     contractorSig: 'Entrepreneur',
@@ -476,7 +558,9 @@ export function CCDocument({
               <Text style={styles.bold}>
                 {language === 'fr' ? 'Acompte : ' : 'Advance payment: '}
               </Text>
-              {formatCurrencyForPdf(meta.advance_payment_amount, language)}
+              {meta.advance_payment_type === '%'
+                ? `${meta.advance_payment_amount}%`
+                : formatCurrencyForPdf(meta.advance_payment_amount, language)}
               {language === 'fr'
                 ? ' (déduit de la facture finale)'
                 : ' (deducted from final invoice)'}
@@ -587,11 +671,10 @@ export function CCDocument({
 
         <Text style={styles.sectionHeading}>{tr.s17Title}</Text>
         <Text style={styles.paragraph}>{tr.s17Body}</Text>
-        <Text style={styles.paragraph}>{tr.s17StepIn}</Text>
-        <Text style={styles.paragraph}>{tr.s17Convenience}</Text>
 
         <Text style={styles.sectionHeading}>{tr.s18Title}</Text>
         <Text style={styles.paragraph}>{tr.s18Body}</Text>
+        <Text style={styles.paragraph}>{tr.s18StepIn}</Text>
 
         <Text style={styles.sectionHeading}>{tr.s19Title}</Text>
         <Text style={styles.paragraph}>{tr.s19Body}</Text>
@@ -606,16 +689,7 @@ export function CCDocument({
         <Text style={styles.paragraph}>{tr.s22Body}</Text>
 
         <Text style={styles.sectionHeading}>{tr.s23Title}</Text>
-        <Text style={styles.paragraph}>
-          {tr.s23Body(meta.inspection_period_days ?? 30)}
-        </Text>
-        <Text style={styles.paragraph}>
-          {tr.s23BodySuspension(
-            meta.suspension_request_adjustment_days ?? 30,
-            meta.suspension_terminate_days ?? 60,
-            meta.suspension_resume_claim_days ?? 15
-          )}
-        </Text>
+        <Text style={styles.paragraph}>{tr.s23Body}</Text>
 
         <Text style={styles.sectionHeading}>{tr.s24Title}</Text>
         <Text style={styles.paragraph}>{tr.s24Body}</Text>
@@ -627,10 +701,63 @@ export function CCDocument({
         <Text style={styles.paragraph}>{tr.s26Body}</Text>
 
         <Text style={styles.sectionHeading}>{tr.s27Title}</Text>
+        <Text style={styles.paragraph}>{tr.s27Body}</Text>
+
+        <Text style={styles.sectionHeading}>{tr.s28Title}</Text>
+        <Text style={styles.paragraph}>{tr.s28Body}</Text>
+
+        <Text style={styles.sectionHeading}>{tr.s29Title}</Text>
+        <Text style={styles.paragraph}>
+          {tr.s29Body(meta.inspection_period_days ?? 30)}
+        </Text>
+
+        <Text style={styles.sectionHeading}>{tr.s30Title}</Text>
+        <Text style={styles.paragraph}>{tr.s30Body}</Text>
+
+        <Text style={styles.sectionHeading}>{tr.s31Title}</Text>
+        <Text style={styles.paragraph}>{tr.s31Body}</Text>
+
+        <Text style={styles.sectionHeading}>{tr.s32Title}</Text>
+        <Text style={styles.paragraph}>
+          {tr.s32Body(
+            meta.suspension_request_adjustment_days ?? 30,
+            meta.suspension_terminate_days ?? 60,
+            meta.suspension_resume_claim_days ?? 15
+          )}
+        </Text>
+
+        <Text style={styles.sectionHeading}>{tr.s33Title}</Text>
+        <Text style={styles.paragraph}>{tr.s33Body}</Text>
+
+        <Text style={styles.sectionHeading}>{tr.s34Title}</Text>
+        <Text style={styles.paragraph}>{tr.s34Body}</Text>
+
+        <Text style={styles.sectionHeading}>{tr.s35Title}</Text>
+        <Text style={styles.paragraph}>{tr.s35Body}</Text>
+
+        <Text style={styles.sectionHeading}>{tr.s36Title}</Text>
+        <Text style={styles.paragraph}>{tr.s36Body}</Text>
+
+        <Text style={styles.sectionHeading}>{tr.s37Title}</Text>
+        <Text style={styles.paragraph}>{tr.s37Body}</Text>
+
+        <Text style={styles.sectionHeading}>{tr.s38Title}</Text>
+        <Text style={styles.paragraph}>{tr.s38Body}</Text>
+
+        <Text style={styles.sectionHeading}>{tr.s39Title}</Text>
+        <Text style={styles.paragraph}>{tr.s39Body}</Text>
+
+        <Text style={styles.sectionHeading}>{tr.s40Title}</Text>
+        <Text style={styles.paragraph}>{tr.s40Body}</Text>
+
+        <Text style={styles.sectionHeading}>{tr.s41Title}</Text>
+        <Text style={styles.paragraph}>{tr.s41Body}</Text>
+
+        <Text style={styles.sectionHeading}>{tr.s42Title}</Text>
         <Text style={styles.paragraph}>
           {meta.extra_clauses && meta.extra_clauses.trim().length > 0
             ? meta.extra_clauses
-            : tr.s27Default}
+            : tr.s42Default}
         </Text>
 
         {/* Acknowledgement + Signatures */}

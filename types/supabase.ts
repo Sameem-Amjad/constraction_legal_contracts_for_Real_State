@@ -506,6 +506,12 @@ export interface ContractMetadata {
   // === Materials & description ===
   material_provider?: 'contractor' | 'client' | 'shared'
 
+  // === Owner (GC→Sub contracts only) ===
+  owner_name?: string
+  owner_address?: string
+  owner_city?: string
+  owner_postal?: string
+
   // === Payment ===
   payment_method?: WizardPaymentMethod | string
   payment_method_label?: string
@@ -514,6 +520,8 @@ export interface ContractMetadata {
   payment_due_days?: WizardPaymentDueDays | number
   advance_payment?: boolean
   advance_payment_amount?: number
+  advance_payment_type?: '$' | '%'
+  milestones?: Array<{ description: string; amount: number }>
 
   // === Late + warranty + holdback + bond + escalation ===
   late_interest?: number

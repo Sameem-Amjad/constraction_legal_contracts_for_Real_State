@@ -22,6 +22,11 @@ export const BasicsStepSchema = z.object({
   sign_date: z.string().min(1, 'Required'),
   // Only used on the Contractor→Client flow per the PDF spec.
   other_entity_type: z.enum(['company', 'individual', 'other']).optional(),
+  // Owner fields — only used on GC→Subcontractor flow (owner of the immovable)
+  owner_name: z.string().optional(),
+  owner_address: z.string().optional(),
+  owner_city: z.string().optional(),
+  owner_postal: z.string().optional(),
 })
 export type BasicsStepInput = z.infer<typeof BasicsStepSchema>
 
@@ -31,6 +36,7 @@ export const PartyInfoSchema = z.object({
   // Company / Other fields
   company_name: z.string().optional(),
   incorporation_regime: z.enum(['quebec_inc', 'canada_inc']).optional(),
+  other_incorporation_regime: z.string().optional(),
   rbq: z.string().optional(),
   head_office: z.string().optional(),
   ho_city: z.string().optional(),
@@ -66,6 +72,12 @@ export const WhenStepSchema = z.object({
 })
 export type WhenStepInput = z.infer<typeof WhenStepSchema>
 
+export const MilestoneSchema = z.object({
+  description: z.string(),
+  amount: z.number().nonnegative(),
+})
+export type MilestoneInput = z.infer<typeof MilestoneSchema>
+
 // Step 6 — Payment
 export const PaymentStepSchema = z.object({
   payment_method: z.enum([
@@ -77,6 +89,7 @@ export const PaymentStepSchema = z.object({
   ]),
   time_materials_description: z.string().optional(),
   invoice_frequency: z.enum(['weekly', 'bi_weekly', 'monthly']).optional(),
+  milestones: z.array(MilestoneSchema).optional(),
   payment_due_days: z.union([
     z.literal(0),
     z.literal(5),
@@ -87,6 +100,7 @@ export const PaymentStepSchema = z.object({
   ]),
   advance_payment: z.boolean(),
   advance_payment_amount: z.number().nonnegative().optional(),
+  advance_payment_type: z.enum(['$', '%']).optional(),
   holdback: z.boolean(),
   holdback_pct: z.number().min(0).max(100).optional(),
 })

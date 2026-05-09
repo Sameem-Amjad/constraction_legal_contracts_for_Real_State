@@ -199,6 +199,12 @@
         "individual": "Individual Person",
         "other": "Other"
       },
+      "ownerInfo": "Immovable Owner (Owner of the Property)",
+      "ownerInfoHint": "Enter the name and address of the owner of the immovable where the work is performed.",
+      "ownerName": "Owner Name",
+      "ownerAddress": "Owner Address",
+      "ownerCity": "Owner City",
+      "ownerPostal": "Owner Postal Code",
       "errors": {
         "required": "This field is required.",
         "positiveAmount": "Must be a positive amount."
@@ -223,7 +229,9 @@
         "company": "Company (Inc.)",
         "individual": "Individual Person",
         "other": "Other"
-      }
+      },
+      "otherRegime": "Other (specify)",
+      "otherRegimePlaceholder": "e.g. S.E.N.C., S.E.N.C.R.L., sole proprietor..."
     },
     "describeWork": {
       "title": "Describe the Work",
@@ -294,7 +302,12 @@
       "advancePayment": "Advance Payment Before Work Starts",
       "advancePaymentAmount": "Advance amount (CAD)",
       "holdback": "Holdback (Retention)",
-      "holdbackPercentage": "Holdback Percentage (%)"
+      "holdbackPercentage": "Holdback Percentage (%)",
+      "milestonesLabel": "Payment Milestones",
+      "milestone": "Milestone",
+      "remove": "Remove",
+      "milestoneDescription": "Milestone description (e.g. Foundation complete)",
+      "addMilestone": "Add Milestone"
     },
     "escalation": {
       "title": "Material Price Increases",

@@ -149,6 +149,7 @@ export function WizardShell({
   )
 
   const showOwnerType = state.role.role === 'contractor'
+  const showOwnerFields = state.role.form_type === 'gc-subcontractor'
 
   const node = (() => {
     switch (currentKey) {
@@ -164,6 +165,7 @@ export function WizardShell({
           <BasicsStep
             state={state}
             showOwnerTypeQuestion={showOwnerType}
+            showOwnerFields={showOwnerFields}
             onNext={(basics) => goNext({ basics })}
           />
         )
@@ -449,6 +451,11 @@ function buildContractRow(
       my_entity_type: state.my_info.entity_type,
       other_entity_type:
         state.basics.other_entity_type ?? state.other_party.entity_type,
+      // Owner info (GC-sub only)
+      owner_name: state.basics.owner_name,
+      owner_address: state.basics.owner_address,
+      owner_city: state.basics.owner_city,
+      owner_postal: state.basics.owner_postal,
       // Schedule
       start_date: state.when.start_date,
       end_date: state.when.end_date,
@@ -461,9 +468,11 @@ function buildContractRow(
       payment_method: state.payment.payment_method,
       time_materials_description: state.payment.time_materials_description,
       invoice_frequency: state.payment.invoice_frequency,
+      milestones: state.payment.milestones,
       payment_due_days: state.payment.payment_due_days,
       advance_payment: state.payment.advance_payment,
       advance_payment_amount: state.payment.advance_payment_amount,
+      advance_payment_type: state.payment.advance_payment_type,
       holdback: state.payment.holdback,
       holdback_pct: state.payment.holdback_pct,
       // Escalation

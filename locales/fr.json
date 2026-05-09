@@ -199,6 +199,12 @@
         "individual": "Personne physique",
         "other": "Autre"
       },
+      "ownerInfo": "Propriétaire de l'immeuble",
+      "ownerInfoHint": "Indiquez le nom et l'adresse du propriétaire de l'immeuble où les travaux sont effectués.",
+      "ownerName": "Nom du propriétaire",
+      "ownerAddress": "Adresse du propriétaire",
+      "ownerCity": "Ville du propriétaire",
+      "ownerPostal": "Code postal du propriétaire",
       "errors": {
         "required": "Ce champ est obligatoire.",
         "positiveAmount": "Doit être un montant positif."
@@ -223,7 +229,9 @@
         "company": "Entreprise (Inc.)",
         "individual": "Personne physique",
         "other": "Autre"
-      }
+      },
+      "otherRegime": "Autre (préciser)",
+      "otherRegimePlaceholder": "ex. S.E.N.C., S.E.N.C.R.L., travailleur autonome..."
     },
     "describeWork": {
       "title": "Description des travaux",
@@ -294,7 +302,12 @@
       "advancePayment": "Acompte avant le début des travaux",
       "advancePaymentAmount": "Montant de l'acompte (CAD)",
       "holdback": "Retenue",
-      "holdbackPercentage": "Pourcentage de retenue (%)"
+      "holdbackPercentage": "Pourcentage de retenue (%)",
+      "milestonesLabel": "Jalons de paiement",
+      "milestone": "Jalon",
+      "remove": "Supprimer",
+      "milestoneDescription": "Description du jalon (ex. fondations terminées)",
+      "addMilestone": "Ajouter un jalon"
     },
     "escalation": {
       "title": "Hausse du prix des matériaux",

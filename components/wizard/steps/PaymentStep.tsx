@@ -7,6 +7,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
 import { Switch } from '@/components/ui/switch'
+import { Button } from '@/components/ui/button'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import {
   Select,
@@ -16,7 +17,7 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { StepShell } from '../StepShell'
-import type { PaymentStepInput, WizardState } from '@/lib/validations/wizard'
+import type { MilestoneInput, PaymentStepInput, WizardState } from '@/lib/validations/wizard'
 
 interface PaymentStepProps {
   state: WizardState
@@ -53,6 +54,20 @@ export function PaymentStep({ state, onNext, onBack }: PaymentStepProps) {
     data.payment_method === 'time_and_materials'
   const showTimeMaterialsDescription =
     data.payment_method === 'time_and_materials'
+  const showMilestones = data.payment_method === 'milestone_payments'
+
+  function addMilestone() {
+    const current = data.milestones ?? []
+    set('milestones', [...current, { description: '', amount: 0 }])
+  }
+  function removeMilestone(idx: number) {
+    const current = data.milestones ?? []
+    set('milestones', current.filter((_, i) => i !== idx))
+  }
+  function updateMilestone(idx: number, patch: Partial<MilestoneInput>) {
+    const current = data.milestones ?? []
+    set('milestones', current.map((m, i) => (i === idx ? { ...m, ...patch } : m)))
+  }
 
   return (
     <StepShell
@@ -91,6 +106,42 @@ export function PaymentStep({ state, onNext, onBack }: PaymentStepProps) {
           })}
         </RadioGroup>
       </fieldset>
+
+      {showMilestones ? (
+        <div className="space-y-3">
+          <Label className="text-base font-semibold">{t('milestonesLabel')}</Label>
+          {(data.milestones ?? []).map((m, idx) => (
+            <div key={idx} className="rounded-lg border-2 border-muted p-4 space-y-2">
+              <div className="flex items-center justify-between gap-2">
+                <span className="text-sm font-medium">{t('milestone')} {idx + 1}</span>
+                <button
+                  type="button"
+                  onClick={() => removeMilestone(idx)}
+                  className="text-xs text-destructive hover:underline"
+                >
+                  {t('remove')}
+                </button>
+              </div>
+              <Input
+                placeholder={t('milestoneDescription')}
+                value={m.description}
+                onChange={(e) => updateMilestone(idx, { description: e.target.value })}
+              />
+              <Input
+                type="number"
+                min={0}
+                step="0.01"
+                placeholder="0.00"
+                value={m.amount || ''}
+                onChange={(e) => updateMilestone(idx, { amount: Number(e.target.value) })}
+              />
+            </div>
+          ))}
+          <Button type="button" variant="outline" size="sm" onClick={addMilestone}>
+            + {t('addMilestone')}
+          </Button>
+        </div>
+      ) : null}
 
       {showTimeMaterialsDescription ? (
         <div className="space-y-2">
@@ -173,19 +224,39 @@ export function PaymentStep({ state, onNext, onBack }: PaymentStepProps) {
             <Label className="text-sm font-normal">
               {t('advancePaymentAmount')}
             </Label>
-            <Input
-              type="number"
-              min={0}
-              step="0.01"
-              value={data.advance_payment_amount ?? ''}
-              onChange={(e) =>
-                set(
-                  'advance_payment_amount',
-                  Number(e.target.value) || undefined
-                )
-              }
-              placeholder="0.00"
-            />
+            <div className="flex gap-2">
+              <div className="flex rounded-md border-2 border-brand-cobalt/30 overflow-hidden">
+                {(['$', '%'] as const).map((type) => (
+                  <button
+                    key={type}
+                    type="button"
+                    onClick={() => set('advance_payment_type', type)}
+                    className={`px-3 py-2 text-sm font-medium transition-colors ${
+                      (data.advance_payment_type ?? '$') === type
+                        ? 'bg-brand-cobalt text-white'
+                        : 'bg-white text-muted-foreground hover:bg-muted/40'
+                    }`}
+                  >
+                    {type}
+                  </button>
+                ))}
+              </div>
+              <Input
+                type="number"
+                min={0}
+                step={data.advance_payment_type === '%' ? '0.1' : '0.01'}
+                max={data.advance_payment_type === '%' ? 100 : undefined}
+                value={data.advance_payment_amount ?? ''}
+                onChange={(e) =>
+                  set(
+                    'advance_payment_amount',
+                    Number(e.target.value) || undefined
+                  )
+                }
+                placeholder={data.advance_payment_type === '%' ? '10' : '0.00'}
+                className="flex-1"
+              />
+            </div>
           </div>
         ) : null}
       </fieldset>
