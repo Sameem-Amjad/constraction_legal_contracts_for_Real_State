@@ -9,6 +9,7 @@ import { ContractRowActions } from '@/components/contracts/ContractRowActions'
 import { AutoDownloadHandler } from '@/components/contracts/AutoDownloadHandler'
 import { createClient } from '@/lib/supabase/server'
 import { adminSupabase } from '@/lib/supabase/admin'
+import { isNoDeleteUser } from '@/lib/no-delete'
 import { formatDate, formatCurrency } from '@/lib/utils'
 import type { Locale } from '@/i18n'
 
@@ -126,6 +127,7 @@ export default async function ContractsListPage({
                     locale={locale}
                     id={c.id}
                     status={c.status}
+                    canDelete={!isNoDeleteUser(user)}
                   />
                 </CardContent>
               </Card>

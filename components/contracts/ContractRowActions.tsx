@@ -17,17 +17,20 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from '@/components/ui/alert-dialog'
+import { NO_DELETE_MESSAGE } from '@/lib/no-delete'
 
 interface ContractRowActionsProps {
   locale: 'en' | 'fr'
   id: string
   status: string
+  canDelete?: boolean
 }
 
 export function ContractRowActions({
   locale,
   id,
   status,
+  canDelete = true,
 }: ContractRowActionsProps) {
   const t = useTranslations('contracts')
   const router = useRouter()
@@ -107,6 +110,14 @@ export function ContractRowActions({
           onClick={() => setConfirmDelete(true)}
           className="text-destructive hover:text-destructive hover:bg-destructive/10"
           aria-label={isFr ? 'Supprimer le brouillon' : 'Delete draft'}
+          disabled={!canDelete}
+          title={
+            canDelete
+              ? undefined
+              : isFr
+                ? 'Les comptes admin de démonstration ne peuvent pas supprimer de données'
+                : NO_DELETE_MESSAGE
+          }
         >
           <Trash2 className="h-4 w-4" />
         </Button>

@@ -27,6 +27,7 @@ import {
 } from '@/components/ui/select'
 import { ContractStatusBadge } from '@/components/shared/ContractStatusBadge'
 import { formatCurrency, formatDate } from '@/lib/utils'
+import { NO_DELETE_MESSAGE } from '@/lib/no-delete'
 
 interface AdminContract {
   id: string
@@ -43,7 +44,11 @@ interface AdminContract {
 
 const PAGE_SIZE = 20
 
-export function AdminContractsTable() {
+export function AdminContractsTable({
+  canDelete = true,
+}: {
+  canDelete?: boolean
+}) {
   const [contracts, setContracts] = useState<AdminContract[]>([])
   const [total, setTotal] = useState(0)
   const [page, setPage] = useState(1)
@@ -295,7 +300,8 @@ export function AdminContractsTable() {
                             variant="ghost"
                             onClick={() => setDeleteTarget(c)}
                             className="text-destructive hover:text-destructive hover:bg-destructive/10"
-                            title="Delete contract"
+                            disabled={!canDelete}
+                            title={canDelete ? 'Delete contract' : NO_DELETE_MESSAGE}
                           >
                             <Trash2 className="h-4 w-4" />
                           </Button>

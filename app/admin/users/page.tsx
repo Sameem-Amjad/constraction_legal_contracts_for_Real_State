@@ -1,8 +1,15 @@
 import { AdminUsersTable } from '@/components/admin/AdminUsersTable'
+import { createClient } from '@/lib/supabase/server'
+import { isNoDeleteUser } from '@/lib/no-delete'
 
 export const dynamic = 'force-dynamic'
 
-export default function AdminUsersPage() {
+export default async function AdminUsersPage() {
+  const supabase = await createClient()
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
+
   return (
     <div className="p-8 space-y-6">
       <div>
@@ -12,7 +19,7 @@ export default function AdminUsersPage() {
           accounts under GDPR / Quebec Law 25.
         </p>
       </div>
-      <AdminUsersTable />
+      <AdminUsersTable canDelete={!isNoDeleteUser(user)} />
     </div>
   )
 }

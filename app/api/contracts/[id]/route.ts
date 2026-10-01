@@ -4,6 +4,7 @@ import { NextRequest, NextResponse } from 'next/server'
 
 import { createClient as createServerSupabase } from '@/lib/supabase/server'
 import { adminSupabase } from '@/lib/supabase/admin'
+import { isNoDeleteUser, NO_DELETE_MESSAGE } from '@/lib/no-delete'
 
 export const runtime = 'nodejs'
 
@@ -24,6 +25,9 @@ export async function DELETE(
 
   if (!user) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  }
+  if (isNoDeleteUser(user)) {
+    return NextResponse.json({ error: NO_DELETE_MESSAGE }, { status: 403 })
   }
 
   const { data: contract } = await adminSupabase

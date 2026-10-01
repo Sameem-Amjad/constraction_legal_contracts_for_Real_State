@@ -3,6 +3,7 @@ import 'server-only'
 import { NextRequest, NextResponse } from 'next/server'
 
 import { adminSupabase } from '@/lib/supabase/admin'
+import { isNoDeleteUser, NO_DELETE_MESSAGE } from '@/lib/no-delete'
 import { requireAdmin } from '../../_guard'
 
 export const runtime = 'nodejs'
@@ -15,6 +16,9 @@ export async function DELETE(
 ) {
   const { user: adminUser, response } = await requireAdmin()
   if (response) return response
+  if (isNoDeleteUser(adminUser)) {
+    return NextResponse.json({ error: NO_DELETE_MESSAGE }, { status: 403 })
+  }
 
   const { id } = await context.params
 

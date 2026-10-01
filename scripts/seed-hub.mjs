@@ -5,14 +5,19 @@
  * Quebec-appropriate company details (2 admins), subscriptions across every
  * state, a spread of contracts and an activity log.
  *
+ * Plus a public portfolio "demo admin that cannot delete":
+ * demo.admin@demo.constraction.ca — role admin, app_metadata.no_delete = true.
+ *
  * Idempotent:
  *   - auth users are looked up by email and only created when missing
  *     (always via auth.admin.createUser, tagged user_metadata.app = 'construction');
+ *   - the demo admin, if it already exists, gets app_metadata.no_delete and the
+ *     shared password re-applied (so a visitor's password change is undone);
  *   - profiles / subscriptions are upserted, so roles and plans are re-applied;
  *   - contracts / activity rows are only inserted for demo users that have none.
  *
  *   SUPABASE_URL=https://<ref>.supabase.co SUPABASE_SERVICE_ROLE_KEY=... \
- *     node --experimental-websocket scripts/seed-hub.mjs
+ *     node --experimental-websocket scripts/seed-hub.mjs [--demo-admin-only]
  *
  *   DRY_RUN=1 node scripts/seed-hub.mjs   # print the planned row counts, no network
  */
@@ -23,6 +28,8 @@ const APP = 'construction';
 const PASSWORD = 'ConstrAction@2026';
 const DOMAIN = 'demo.constraction.ca';
 const DRY_RUN = Boolean(process.env.DRY_RUN);
+const DEMO_ADMIN_ONLY = process.argv.includes('--demo-admin-only');
+const DEMO_ADMIN_EMAIL = `demo.admin@${DOMAIN}`;
 
 // Deterministic PRNG so re-runs produce the same spread.
 let _s = 0x3ac91f7;
@@ -167,57 +174,111 @@ function buildDataset() {
         'draft', 'draft', 'generated', 'generated',
         'paid', 'paid', 'paid', 'signed', 'signed', 'completed',
       ]);
-      const [pCity, pFsa] = pick(CITIES);
-      const clientPerson = pick(PEOPLE);
-      const paid = ['paid', 'signed', 'completed'].includes(status);
-      const age = int(1, 120);
-
-      u.contracts.push({
-        id: crypto.randomUUID(),
-        contract_type: type,
-        client_name: `${clientPerson[0]} ${clientPerson[1]}`,
-        client_address: street(),
-        client_city: pCity,
-        client_postal: postal(pFsa),
-        client_email: `${slug(clientPerson[0], clientPerson[1])}@example.com`,
-        client_phone: phone(),
-        contractor_name: u.isCompany ? u.company : `${u.first} ${u.last}`,
-        contractor_rbq: rbq(),
-        contractor_address: street(),
-        contractor_city: u.city,
-        contractor_postal: postal(u.fsa),
-        contractor_email: u.email,
-        contractor_phone: phone(),
-        project_site: street(),
-        project_city: pCity,
-        project_postal: postal(pFsa),
-        project_description: pick(PROJECTS),
-        contract_price: Number((int(2_500, 185_000) + rnd()).toFixed(2)),
-        status,
-        stripe_payment_intent_id: paid ? `pi_demo${crypto.randomUUID().slice(0, 14).replace(/-/g, '')}` : null,
-        stripe_checkout_session_id: paid ? `cs_demo${crypto.randomUUID().slice(0, 14).replace(/-/g, '')}` : null,
-        metadata: { locale: rnd() < 0.5 ? 'fr' : 'en', source: 'demo-seed' },
-        created_at: iso(age),
-        updated_at: iso(Math.max(0, age - int(0, 6))),
-      });
+      u.contracts.push(makeContract(u, type, status));
     }
   }
 
   // ── activity log ──────────────────────────────────────────────────────
   for (const u of people) {
     u.activity = [];
-    for (let a = 0; a < int(2, 6); a++) {
-      const [action, details] = pick(ACTIONS);
-      u.activity.push({
-        action,
-        details,
-        ip_address: `${int(24, 208)}.${int(0, 255)}.${int(0, 255)}.${int(1, 254)}`,
-        created_at: iso(int(0, 60)),
-      });
-    }
+    for (let a = 0; a < int(2, 6); a++) u.activity.push(makeActivity());
   }
 
   return people;
+}
+
+function makeContract(u, type, status) {
+  const [pCity, pFsa] = pick(CITIES);
+  const clientPerson = pick(PEOPLE);
+  const paid = ['paid', 'signed', 'completed'].includes(status);
+  const age = int(1, 120);
+
+  return {
+    id: crypto.randomUUID(),
+    contract_type: type,
+    client_name: `${clientPerson[0]} ${clientPerson[1]}`,
+    client_address: street(),
+    client_city: pCity,
+    client_postal: postal(pFsa),
+    client_email: `${slug(clientPerson[0], clientPerson[1])}@example.com`,
+    client_phone: phone(),
+    contractor_name: u.isCompany ? u.company : `${u.first} ${u.last}`,
+    contractor_rbq: rbq(),
+    contractor_address: street(),
+    contractor_city: u.city,
+    contractor_postal: postal(u.fsa),
+    contractor_email: u.email,
+    contractor_phone: phone(),
+    project_site: street(),
+    project_city: pCity,
+    project_postal: postal(pFsa),
+    project_description: pick(PROJECTS),
+    contract_price: Number((int(2_500, 185_000) + rnd()).toFixed(2)),
+    status,
+    stripe_payment_intent_id: paid ? `pi_demo${crypto.randomUUID().slice(0, 14).replace(/-/g, '')}` : null,
+    stripe_checkout_session_id: paid ? `cs_demo${crypto.randomUUID().slice(0, 14).replace(/-/g, '')}` : null,
+    metadata: { locale: rnd() < 0.5 ? 'fr' : 'en', source: 'demo-seed' },
+    created_at: iso(age),
+    updated_at: iso(Math.max(0, age - int(0, 6))),
+  };
+}
+
+function makeActivity() {
+  const [action, details] = pick(ACTIONS);
+  return {
+    action,
+    details,
+    ip_address: `${int(24, 208)}.${int(0, 255)}.${int(0, 255)}.${int(1, 254)}`,
+    created_at: iso(int(0, 60)),
+  };
+}
+
+// Public portfolio admin: full admin role, but app_metadata.no_delete = true
+// makes every delete path refuse it. Built after the main dataset so it never
+// shifts the PRNG sequence of the 30 demo accounts.
+function buildDemoAdmin() {
+  const first = 'Démo';
+  const last = 'Admin';
+  const [city, fsa] = CITIES[0];
+  const company = 'ConstrAction Démo inc.';
+  const u = {
+    first, last, email: DEMO_ADMIN_EMAIL, metaPhone: phone(), role: 'admin',
+    city, fsa, isCompany: true, company, monthly: true,
+    appMetadata: { no_delete: true },
+  };
+  u.profile = {
+    email: u.email,
+    first_name: first,
+    last_name: last,
+    phone: phone(),
+    role: 'admin',
+    entity_type: 'company',
+    company_name: company,
+    incorporation_regime: 'quebec_inc',
+    rbq: rbq(),
+    head_office: street(),
+    ho_city: city,
+    ho_postal: postal(fsa),
+    rep_name: `${first} ${last}`,
+    rep_title: 'Administrateur (démo)',
+    full_name: null,
+    address: null,
+    ind_city: null,
+    ind_postal: null,
+    created_at: iso(45),
+  };
+  u.subscription = {
+    status: 'active',
+    plan_type: 'unlimited_monthly',
+    cancel_at_period_end: false,
+    current_period_end: iso(-365),
+  };
+  // One contract per status so every row action (incl. the disabled delete) shows.
+  u.contracts = ['draft', 'generated', 'paid', 'signed', 'completed'].map((status, k) =>
+    makeContract(u, k % 2 ? 'gc-subcontractor' : 'client-contractor', status)
+  );
+  u.activity = Array.from({ length: 4 }, makeActivity);
+  return u;
 }
 
 function summarize(people) {
@@ -240,9 +301,11 @@ function summarize(people) {
 
 async function main() {
   const people = buildDataset();
+  const demoAdmin = buildDemoAdmin();
+  const targets = DEMO_ADMIN_ONLY ? [demoAdmin] : [...people, demoAdmin];
 
   if (DRY_RUN) {
-    console.log(JSON.stringify(summarize(people), null, 2));
+    console.log(JSON.stringify(summarize(targets), null, 2));
     return;
   }
 
@@ -286,9 +349,22 @@ async function main() {
   let insertedContracts = 0;
   let insertedActivity = 0;
 
-  for (const u of people) {
-    let id = existing.get(u.email)?.id;
-    if (id) {
+  for (const u of targets) {
+    const found = existing.get(u.email);
+    let id = found?.id;
+    if (id && u.appMetadata) {
+      // Demo admin: re-apply the no-delete flag and the shared password.
+      const { error } = await supabase.auth.admin.updateUserById(id, {
+        password: PASSWORD,
+        app_metadata: { ...found.app_metadata, ...u.appMetadata },
+        user_metadata: { ...found.user_metadata, app: APP },
+      });
+      if (error) {
+        console.error(`   ✗ ${u.email}: ${error.message}`);
+        continue;
+      }
+      console.log(`   = ${u.email.padEnd(38)} exists (no_delete + password re-applied)`);
+    } else if (id) {
       console.log(`   = ${u.email.padEnd(38)} exists`);
     } else {
       const { data, error } = await supabase.auth.admin.createUser({
@@ -296,6 +372,7 @@ async function main() {
         password: PASSWORD,
         email_confirm: true,
         user_metadata: { app: APP, first_name: u.first, last_name: u.last, phone: u.metaPhone },
+        ...(u.appMetadata ? { app_metadata: u.appMetadata } : {}),
       });
       if (error || !data.user) {
         console.error(`   ✗ ${u.email}: ${error?.message ?? 'no user returned'}`);
@@ -346,7 +423,7 @@ async function main() {
       else insertedActivity += rows.length;
     }
 
-    console.log(`     ${u.role.padEnd(5)} ${u.subscription.status}/${u.subscription.plan_type}`);
+    console.log(`     ${u.role.padEnd(5)} ${u.subscription.status}/${u.subscription.plan_type}${u.appMetadata ? ' no_delete' : ''}`);
   }
 
   const after = {

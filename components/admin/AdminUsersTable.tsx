@@ -26,6 +26,7 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { formatDate } from '@/lib/utils'
+import { NO_DELETE_MESSAGE } from '@/lib/no-delete'
 import { UserDetailDrawer } from './UserDetailDrawer'
 
 interface AdminUser {
@@ -41,7 +42,11 @@ interface AdminUser {
 
 const PAGE_SIZE = 20
 
-export function AdminUsersTable() {
+export function AdminUsersTable({
+  canDelete = true,
+}: {
+  canDelete?: boolean
+}) {
   const [users, setUsers] = useState<AdminUser[]>([])
   const [total, setTotal] = useState(0)
   const [page, setPage] = useState(1)
@@ -233,11 +238,13 @@ export function AdminUsersTable() {
                             variant="ghost"
                             onClick={() => setDeleteTarget(u)}
                             className="text-destructive hover:text-destructive hover:bg-destructive/10"
-                            disabled={u.role === 'admin'}
+                            disabled={u.role === 'admin' || !canDelete}
                             title={
-                              u.role === 'admin'
-                                ? 'Demote admin first'
-                                : 'Erase user (GDPR)'
+                              !canDelete
+                                ? NO_DELETE_MESSAGE
+                                : u.role === 'admin'
+                                  ? 'Demote admin first'
+                                  : 'Erase user (GDPR)'
                             }
                           >
                             <Trash2 className="h-4 w-4" />

@@ -1,8 +1,15 @@
 import { AdminContractsTable } from '@/components/admin/AdminContractsTable'
+import { createClient } from '@/lib/supabase/server'
+import { isNoDeleteUser } from '@/lib/no-delete'
 
 export const dynamic = 'force-dynamic'
 
-export default function AdminContractsPage() {
+export default async function AdminContractsPage() {
+  const supabase = await createClient()
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
+
   return (
     <div className="p-8 space-y-6">
       <div>
@@ -11,7 +18,7 @@ export default function AdminContractsPage() {
           Search, filter, download PDFs, and delete contracts in any state.
         </p>
       </div>
-      <AdminContractsTable />
+      <AdminContractsTable canDelete={!isNoDeleteUser(user)} />
     </div>
   )
 }
