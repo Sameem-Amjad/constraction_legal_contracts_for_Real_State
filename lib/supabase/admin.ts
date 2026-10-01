@@ -2,6 +2,7 @@ import 'server-only'
 
 import { createClient, type SupabaseClient } from '@supabase/supabase-js'
 import type { Database } from '@/types/supabase'
+import { SUPABASE_SCHEMA } from './schema'
 
 type AdminClient = SupabaseClient<Database>
 
@@ -13,6 +14,7 @@ export function getAdminSupabase(): AdminClient {
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.SUPABASE_SERVICE_ROLE_KEY!,
     {
+      db: { schema: SUPABASE_SCHEMA },
       auth: {
         autoRefreshToken: false,
         persistSession: false,

@@ -11,7 +11,7 @@ export async function POST(request: NextRequest) {
   }
 
   await fetch(
-    `${process.env.NEXT_PUBLIC_SUPABASE_URL}/functions/v1/send-welcome`,
+    `${process.env.NEXT_PUBLIC_SUPABASE_URL}/functions/v1/construction-send-welcome`,
     {
       method: 'POST',
       headers: {

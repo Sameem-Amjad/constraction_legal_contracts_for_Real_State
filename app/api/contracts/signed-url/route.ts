@@ -62,7 +62,7 @@ export async function GET(request: NextRequest) {
   }
 
   const { data: signedUrl, error } = await adminSupabase.storage
-    .from('contracts')
+    .from('construction-contracts')
     .createSignedUrl(contract.pdf_path, 300)
 
   if (error || !signedUrl) {

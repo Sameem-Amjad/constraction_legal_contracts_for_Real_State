@@ -102,8 +102,9 @@ export async function DELETE(
     .select('*', { count: 'exact', head: true })
     .eq('user_id', targetUserId)
 
-  // 2. Wipe storage objects under <user_id>/ in `contracts` and `logos` buckets
-  for (const bucket of ['contracts', 'logos'] as const) {
+  // 2. Wipe storage objects under <user_id>/ in `construction-contracts` and
+  // `construction-logos` buckets
+  for (const bucket of ['construction-contracts', 'construction-logos'] as const) {
     const { data: files } = await adminSupabase.storage
       .from(bucket)
       .list(targetUserId, { limit: 1000 })

@@ -3,6 +3,7 @@ import { serve } from 'https://deno.land/std@0.177.0/http/server.ts'
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.46.1'
 import Stripe from 'https://esm.sh/stripe@17.4.0?target=deno'
 import { corsHeaders } from '../_shared/cors.ts'
+import { SUPABASE_SCHEMA } from '../_shared/schema.ts'
 
 serve(async (req) => {
   if (req.method === 'OPTIONS') {
@@ -26,6 +27,7 @@ serve(async (req) => {
 
     // Client scoped to the calling user (verifies JWT)
     const userClient = createClient(supabaseUrl, serviceRoleKey, {
+      db: { schema: SUPABASE_SCHEMA },
       auth: { persistSession: false },
       global: { headers: { Authorization: `Bearer ${userJwt}` } },
     })
@@ -39,6 +41,7 @@ serve(async (req) => {
     }
 
     const admin = createClient(supabaseUrl, serviceRoleKey, {
+      db: { schema: SUPABASE_SCHEMA },
       auth: { persistSession: false },
     })
 
@@ -89,7 +92,7 @@ serve(async (req) => {
       .single()
 
     if (profile?.email) {
-      await fetch(`${supabaseUrl}/functions/v1/send-cancellation`, {
+      await fetch(`${supabaseUrl}/functions/v1/construction-send-cancellation`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

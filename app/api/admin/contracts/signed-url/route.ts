@@ -33,7 +33,7 @@ export async function GET(request: NextRequest) {
   }
 
   const { data: signed } = await adminSupabase.storage
-    .from('contracts')
+    .from('construction-contracts')
     .createSignedUrl(contract.pdf_path, 300)
 
   return NextResponse.json({ signed_url: signed?.signedUrl ?? null })

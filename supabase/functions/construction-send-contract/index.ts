@@ -5,6 +5,7 @@ import { createTransport } from 'npm:nodemailer@6'
 import { Buffer } from 'node:buffer'
 import { corsHeaders } from '../_shared/cors.ts'
 import { renderEmail } from '../_shared/email.ts'
+import { SUPABASE_SCHEMA } from '../_shared/schema.ts'
 
 serve(async (req) => {
   if (req.method === 'OPTIONS') {
@@ -27,12 +28,12 @@ serve(async (req) => {
     const supabase = createClient(
       Deno.env.get('SUPABASE_URL')!,
       Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!,
-      { auth: { persistSession: false } }
+      { db: { schema: SUPABASE_SCHEMA }, auth: { persistSession: false } }
     )
 
     // Download the PDF as a Blob → ArrayBuffer → Uint8Array → base64
     const { data: blob, error: downloadError } = await supabase.storage
-      .from('contracts')
+      .from('construction-contracts')
       .download(pdf_path)
 
     if (downloadError || !blob) {

@@ -29,7 +29,7 @@ export async function DELETE(
   }
 
   if (contract.pdf_path) {
-    await adminSupabase.storage.from('contracts').remove([contract.pdf_path])
+    await adminSupabase.storage.from('construction-contracts').remove([contract.pdf_path])
   }
 
   const { error: delError } = await adminSupabase

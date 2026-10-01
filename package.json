@@ -9,7 +9,7 @@
     "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
-    "supabase:gen-types": "supabase gen types typescript --linked --schema public > types/supabase.ts"
+    "supabase:gen-types": "supabase gen types typescript --linked --schema construction > types/supabase.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",

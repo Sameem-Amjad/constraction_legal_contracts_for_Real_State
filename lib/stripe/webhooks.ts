@@ -184,7 +184,7 @@ export async function reconcilePaymentSession(
     (contract.metadata as ContractMetadata | null) ?? ({} as ContractMetadata)
   const language: 'en' | 'fr' = meta.language ?? 'en'
 
-  await invokeEdgeFunction('send-receipt', {
+  await invokeEdgeFunction('construction-send-receipt', {
     email: recipientEmail,
     first_name: firstName,
     contract_id: contractId,
@@ -193,7 +193,7 @@ export async function reconcilePaymentSession(
   })
 
   if (contract.pdf_path) {
-    await invokeEdgeFunction('send-contract', {
+    await invokeEdgeFunction('construction-send-contract', {
       email: recipientEmail,
       first_name: firstName,
       contract_id: contractId,

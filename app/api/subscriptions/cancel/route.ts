@@ -20,7 +20,7 @@ export async function POST(request: NextRequest) {
   }
 
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_SUPABASE_URL}/functions/v1/cancel-subscription`,
+    `${process.env.NEXT_PUBLIC_SUPABASE_URL}/functions/v1/construction-cancel-subscription`,
     {
       method: 'POST',
       headers: {

@@ -62,11 +62,11 @@ supabase secrets set \
 ### 5. Deploy Edge Functions
 
 ```bash
-supabase functions deploy send-welcome
-supabase functions deploy send-contract
-supabase functions deploy send-receipt
-supabase functions deploy send-cancellation
-supabase functions deploy cancel-subscription
+supabase functions deploy construction-send-welcome
+supabase functions deploy construction-send-contract
+supabase functions deploy construction-send-receipt
+supabase functions deploy construction-send-cancellation
+supabase functions deploy construction-cancel-subscription
 ```
 
 ### 6. Run dev server

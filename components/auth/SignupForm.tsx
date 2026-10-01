@@ -19,6 +19,7 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { createClient } from '@/lib/supabase/client'
+import { SUPABASE_APP_TAG } from '@/lib/supabase/schema'
 
 type EntityType = 'individual' | 'company'
 
@@ -79,6 +80,7 @@ export function SignupForm({ locale }: { locale: 'en' | 'fr' }) {
       options: {
         emailRedirectTo: `${window.location.origin}/${locale}/dashboard`,
         data: {
+          app: SUPABASE_APP_TAG,
           first_name: form.first_name,
           last_name: form.last_name,
           phone: form.phone,

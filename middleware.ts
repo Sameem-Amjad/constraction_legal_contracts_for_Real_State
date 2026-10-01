@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { createServerClient, type CookieOptions } from '@supabase/ssr'
 
 import { locales, defaultLocale } from './i18n'
+import { SUPABASE_SCHEMA } from './lib/supabase/schema'
 
 const intlMiddleware = createMiddleware({
   locales,
@@ -46,6 +47,7 @@ export async function middleware(request: NextRequest) {
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {
+      db: { schema: SUPABASE_SCHEMA },
       cookies: {
         getAll: () => request.cookies.getAll(),
         setAll: (

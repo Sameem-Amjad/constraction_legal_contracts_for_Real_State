@@ -76,7 +76,7 @@ export async function POST(request: NextRequest) {
     const storagePath = `${folder}/${contract_id}.pdf`
 
     const { error: uploadError } = await adminSupabase.storage
-      .from('contracts')
+      .from('construction-contracts')
       .upload(storagePath, pdfBuffer, {
         contentType: 'application/pdf',
         upsert: true,
@@ -121,7 +121,7 @@ export async function POST(request: NextRequest) {
 
     if (isPro && profile) {
       await fetch(
-        `${process.env.NEXT_PUBLIC_SUPABASE_URL}/functions/v1/send-contract`,
+        `${process.env.NEXT_PUBLIC_SUPABASE_URL}/functions/v1/construction-send-contract`,
         {
           method: 'POST',
           headers: {
@@ -147,7 +147,7 @@ export async function POST(request: NextRequest) {
     }
 
     const { data: signedUrlData } = await adminSupabase.storage
-      .from('contracts')
+      .from('construction-contracts')
       .createSignedUrl(storagePath, 300)
 
     return NextResponse.json({
