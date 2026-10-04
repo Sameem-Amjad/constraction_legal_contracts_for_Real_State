@@ -1,5 +1,6 @@
 // Hosted in the shared hub's public `construction-logos` bucket (re-upload the
-// brand PNG to this path; the old project's copy is gone).
+// brand PNG to this path; the old project's copy is gone). Source file: the PNG
+// embedded in data/ConstrAction_Receipt_Template_GHL.html.
 export const BRAND_LOGO_URL = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/construction-logos/brand/logo.png`
 
 export const PLAN_PRICES = {

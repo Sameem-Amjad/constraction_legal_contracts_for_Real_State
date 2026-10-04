@@ -20,6 +20,9 @@
  *     node --experimental-websocket scripts/seed-hub.mjs [--demo-admin-only]
  *
  *   DRY_RUN=1 node scripts/seed-hub.mjs   # print the planned row counts, no network
+ *
+ * Contracts get a pdf_path but no file: run scripts/seed-hub-pdfs.mjs afterwards
+ * to render and upload the PDFs, otherwise "Download PDF" has nothing to sign.
  */
 import { createClient } from '@supabase/supabase-js';
 
